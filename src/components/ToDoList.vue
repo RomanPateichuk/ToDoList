@@ -166,6 +166,9 @@
                   left: 90%;
                   top: 25%;
                   opacity: 0;
+                   @media (max-width: 370px) { 
+                   left: 85%
+                  }
                 }
               }
               
