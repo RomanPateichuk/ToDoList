@@ -23,7 +23,7 @@
             <label for="task__remove3" class="task__remove"></label>
           </div>
           <div class="task new__task">
-            <p class="task__text">Add a new task</p>
+            <input type="text" class="add__task" placeholder="Add a new task" />
           </div>
         </div>
       </main>
@@ -177,16 +177,24 @@
           border: 1.5px dashed #ffca93;
           justify-content: center;
 
-          .task__text {
-            color: #ffca93;
-            padding: 0 1.4375rem 0 1.4375rem;
-
-            &:after {
-              display: none;
+          &:focus {
+            ::placeholder {
+              opacity: 1;
             }
+          }
 
-            &:before {
-              display: none;
+          &:focus-within {
+            background: #ffffff;
+          }
+
+          .add__task {
+            color: #ffca93;
+            width: 100%;
+            border: none;
+            background-color: inherit;
+            &::placeholder {
+              color: inherit;
+              text-align: center;
             }
           }
 
