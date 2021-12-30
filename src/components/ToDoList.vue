@@ -5,22 +5,25 @@
       <main class="main">
         <div class="tasks__wrapper">
           <div class="task">
-            <input type="checkbox" class="check__done" id="check1" />
-            <label for="check1" class="task__text"> Task 1</label>
-            <input type="checkbox" class="check__remove" id="task__remove1" />
-            <label for="task__remove1" class="task__remove"></label>
+            <label class="task__text">
+              <input type="checkbox" class="task__done" />
+              <span class="text">Task 1</span>
+            </label>
+            <button class="task__remove">&times;</button>
           </div>
           <div class="task">
-            <input type="checkbox" class="check__done" id="check2" />
-            <label for="check2" class="task__text"> Task 2</label>
-            <input type="checkbox" class="check__remove" id="task__remove2" />
-            <label for="task__remove2" class="task__remove"></label>
+            <label class="task__text">
+              <input type="checkbox" class="task__done" />
+              <span class="text">Task 1</span>
+            </label>
+            <button class="task__remove">&times;</button>
           </div>
           <div class="task">
-            <input type="checkbox" class="check__done" id="check3" />
-            <label for="check3" class="task__text">Task 3</label>
-            <input type="checkbox" class="check__remove" id="task__remove3" />
-            <label for="task__remove3" class="task__remove"></label>
+            <label class="task__text">
+              <input type="checkbox" class="task__done" />
+              <span class="text">Task 1</span>
+            </label>
+            <button class="task__remove">&times;</button>
           </div>
           <div class="task new__task">
             <input type="text" class="add__task" placeholder="Add a new task" />
@@ -94,47 +97,50 @@
           align-items: center;
           position: relative;
 
-          .check__done,
-          .check__remove {
-            appearance: none;
-            &:checked {
-              + label {
-                &:after {
-                  opacity: 1;
-                }
-              }
-            }
-          }
-
           .task__text {
             color: #7f4b13;
             padding: 0 1.4375rem 0 3rem;
 
-            &:before {
-              content: "";
-              display: block;
-              width: 1.5rem;
-              height: 1.5rem;
-              background: #feb567;
-              border-radius: 5px;
-              position: absolute;
-              top: 0.75rem;
-              left: 1.25rem;
+            .text {
+              &:before {
+                content: "";
+                display: block;
+                width: 1.5rem;
+                height: 1.5rem;
+                background: #feb567;
+                border-radius: 5px;
+                position: absolute;
+                top: 0.8125rem;
+                left: 1.25rem;
+              }
+
+              &:after {
+                content: "";
+                display: block;
+                width: 9.43px;
+                height: 13.71px;
+                border: 1px solid #ffffff;
+                border-left: none;
+                border-top: none;
+                position: absolute;
+                transform: rotate(45deg);
+                top: 0.9375rem;
+                left: 1.75rem;
+                opacity: 0;
+              }
             }
 
-            &:after {
-              content: "";
-              display: block;
-              width: 9.43px;
-              height: 13.71px;
-              border: 1px solid #ffffff;
-              border-left: none;
-              border-top: none;
-              position: absolute;
-              transform: rotate(45deg);
-              top: 0.9375rem;
-              left: 1.75rem;
-              opacity: 0;
+            .task__done {
+              appearance: none;
+            }
+
+            .task__done:checked {
+              + .text {
+                text-decoration: line-through;
+                &:after {
+                  opacity: 1;
+                }
+              }
             }
           }
 
@@ -147,27 +153,18 @@
           }
 
           .task__remove {
-            &:before {
-              content: url("../assets/img/close_disable.png");
-              border: none;
-              position: absolute;
-              left: 90%;
-              top: 25%;
-              @media (max-width: 370px) {
-                left: 85%;
-              }
-            }
+            display: flex;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 1.5px solid #ffca93;
+            color: #ffca93;
+            border-radius: 0.3125rem;
 
-            &:after {
-              content: url("../assets/img/close_active.png");
-              border: none;
-              position: absolute;
-              left: 90%;
-              top: 25%;
-              opacity: 0;
-              @media (max-width: 370px) {
-                left: 85%;
-              }
+            &:hover {
+              border: 1.5px solid #fc8f1a;
+              color: #fc8f1a;
+              cursor: pointer;
             }
           }
         }
