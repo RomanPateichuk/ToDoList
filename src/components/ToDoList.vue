@@ -33,9 +33,21 @@
       <footer class="footer">
         <div class="footer__progress">1/3 left</div>
         <div class="footer__btn-wrapper">
-          <button class="btn">All</button>
-          <button class="btn">Active</button>
-          <button class="btn">Completed</button>
+          <label class="btn__label">
+            <input type="radio" name="radio-footer" /><span class="btn__radio"
+              >All</span
+            >
+          </label>
+          <label class="btn__label"
+            ><input type="radio" name="radio-footer" /><span class="btn__radio"
+              >Active</span
+            ></label
+          >
+          <label class="btn__label"
+            ><input type="radio" name="radio-footer" /><span class="btn__radio"
+              >Completed</span
+            ></label
+          >
         </div>
       </footer>
     </div>
@@ -44,23 +56,24 @@
 </template>
 
 <style scoped lang="scss">
+@import "../assets/scss/main.scss";
 .wrapper {
-  @media (max-width: 280px) {
+  @media (max-width: 410px) {
     font-size: 1rem;
   }
   max-width: 73.625rem;
-  padding: 0 5% 0 5%;
-  margin: 5% auto 0 auto;
+  padding: 0 1rem;
+  margin: 2.5rem auto 0 auto;
 
   img {
     z-index: 1;
     position: absolute;
-    right: 9%;
-    top: -6%;
+    right: 4rem;
+    top: -2rem;
   }
 
   .wrapper__main {
-    background-color: white;
+    background-color: $main;
     max-width: 33.75rem;
     margin: 0 auto;
     z-index: 2;
@@ -68,7 +81,7 @@
 
     .header {
       font-family: "Open Sans", sans-serif;
-      background-color: #ffca93;
+      background-color: $header;
       text-align: center;
       height: 3.125rem;
 
@@ -83,22 +96,22 @@
       padding: 0 1.875rem 0 1.875rem;
       flex-direction: column;
       @media (max-width: 450px) {
-        padding: 0 0.5rem 0 0.5rem;
+        padding: 0 0.5rem;
       }
       .tasks__wrapper {
         margin: 1.875rem 0;
         .task {
           display: flex;
-          background: #ffdfbe;
+          background: $task;
           border-radius: 0.625rem;
-          padding: 0 1.25rem 0 1.25rem;
+          padding: 0 1.25rem;
           height: 3.125rem;
           justify-content: flex-start;
           align-items: center;
           position: relative;
 
           .task__text {
-            color: #7f4b13;
+            color: $task-text;
             padding: 0 1.4375rem 0 3rem;
 
             .text {
@@ -107,8 +120,8 @@
                 display: block;
                 width: 1.5rem;
                 height: 1.5rem;
-                background: #feb567;
-                border-radius: 5px;
+                background: $task-done;
+                border-radius: 0.3125rem;
                 position: absolute;
                 top: 0.8125rem;
                 left: 1.25rem;
@@ -117,9 +130,9 @@
               &:after {
                 content: "";
                 display: block;
-                width: 9.43px;
-                height: 13.71px;
-                border: 1px solid #ffffff;
+                width: 0.589375rem;
+                height: 0.856875rem;
+                border: 1px solid $main;
                 border-left: none;
                 border-top: none;
                 position: absolute;
@@ -157,21 +170,21 @@
             justify-content: center;
             width: 1.5rem;
             height: 1.5rem;
-            border: 1.5px solid #ffca93;
-            color: #ffca93;
+            border: 1.5px solid $task-remove;
+            color: $task-remove;
             border-radius: 0.3125rem;
 
             &:hover {
-              border: 1.5px solid #fc8f1a;
-              color: #fc8f1a;
+              border: 1.5px solid $task-remove-hover;
+              color: $task-remove-hover;
               cursor: pointer;
             }
           }
         }
 
         .new__task {
-          background: #ffecd8;
-          border: 1.5px dashed #ffca93;
+          background: $new-task-bg;
+          border: 1.5px dashed $task-remove;
           justify-content: center;
 
           &:focus {
@@ -181,11 +194,11 @@
           }
 
           &:focus-within {
-            background: #ffffff;
+            background: $main;
           }
 
           .add__task {
-            color: #ffca93;
+            color: $task-remove;
             width: 100%;
             border: none;
             background-color: inherit;
@@ -204,43 +217,50 @@
 
     .footer {
       display: flex;
-      height: 3.125rem;
+      min-height: 3.125rem;
       justify-content: space-between;
       align-items: center;
-      background: #ffca93;
-      padding: 0 1.875rem 0 1.875rem;
+      background: $task-remove;
+      padding: 0 1.875rem;
       font-family: "Open Sans", sans-serif;
       @media (max-width: 410px) {
         font-size: 1rem;
-        padding: 0 1rem 0 1rem;
+        padding: 0 1rem;
       }
       @media (max-width: 314px) {
         flex-direction: column;
       }
 
       * {
-        color: rgba(127, 75, 19, 0.42);
+        color: $footer-font-color;
       }
 
       .footer__btn-wrapper {
         :not(:last-child) {
-          margin-right: 1.5625rem;
-          @media (max-width: 520px) {
+          margin-right: 1rem;
+          @media (max-width: 490px) {
             margin-right: 0;
           }
         }
 
-        .btn {
-          border: 1px solid rgba(0, 0, 0, 0);
-          box-sizing: border-box;
-          padding: 0.625rem;
-          @media (max-width: 520px) {
-            padding: 0.3125rem;
+        .btn__label {
+          input[type="radio"] {
+            appearance: none;
           }
-        }
-        .btn:hover {
-          border: 1px solid #c9955d;
-          border-radius: 10px;
+
+          input[type="radio"]:checked {
+            + .btn__radio {
+              border: 1px solid $footer-border-btn;
+              border-radius: 10px;
+              box-sizing: border-box;
+            }
+          }
+
+          .btn__radio {
+            border: 1px solid transparent;
+            box-sizing: border-box;
+            padding: 0.3rem;
+          }
         }
       }
     }
