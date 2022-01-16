@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ToDoList from "./components/ToDoList.vue";
+import ToDoList from "./components/pages/ToDoList.vue";
 
 export default {
   name: "App",
@@ -15,7 +15,7 @@ export default {
 
 <style lang="scss">
 @import "scss-reset/_reset.scss";
-@import "./src/assets/scss/variabels.scss";
+@import "@/assets/scss/main.scss";
 body {
   overflow: hidden;
   font: {
@@ -23,5 +23,19 @@ body {
     size: 20px;
   }
   background: $wrapper;
+
+  .tasks__wrapper {
+    margin: 1.875rem 0 0 0;
+    .task {
+      display: flex;
+      background: $task;
+      border-radius: 0.625rem;
+      padding: 0 1.25rem;
+      height: 3.125rem;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+    }
+  }
 }
 </style>

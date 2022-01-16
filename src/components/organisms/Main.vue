@@ -1,0 +1,41 @@
+<template>
+  <main class="main">
+    <div class="tasks__wrapper">
+      <Task v-for="(task, id) in tasks" :key="id" :TaskValue="task.value" />
+      <AddTask />
+    </div>
+  </main>
+</template>
+
+<script>
+export default {
+  components: {
+    Task: () => import("@/components/atoms/TaskWrapper.vue"),
+    AddTask: () => import("@/components/atoms/AddTaskWrapper.vue"),
+  },
+
+  data() {
+    return {
+      tasks: [
+        { id: 1, value: "Task 1" },
+        { id: 2, value: "Task 2" },
+        { id: 3, value: "Task 3" },
+        { id: 3, value: "Task 4" },
+      ],
+    };
+  },
+};
+</script>
+
+<style scoped lang="scss">
+@import "@/assets/scss/main.scss";
+
+.main {
+  display: flex;
+  padding: 0 1.875rem 0 1.875rem;
+  flex-direction: column;
+  @media (max-width: 450px) {
+    padding: 0 0.5rem;
+  }
+}
+</style>
