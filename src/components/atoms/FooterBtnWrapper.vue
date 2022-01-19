@@ -1,8 +1,10 @@
 <template>
   <div class="footer__btn-wrapper">
-    <FooterBtn :FooterBtnValue="value1" />
-    <FooterBtn :FooterBtnValue="value2" />
-    <FooterBtn :FooterBtnValue="value3" />
+    <FooterBtn
+      v-for="(btn, index) in btns"
+      :key="index"
+      :FooterBtnValue="btn"
+    />
   </div>
 </template>
 <script>
@@ -12,9 +14,7 @@ export default {
   },
   data() {
     return {
-      value1: "All",
-      value2: "Active",
-      value3: "Completed",
+      btns: ["All", "Active", "Completed"],
     };
   },
 };

@@ -3,12 +3,10 @@
 </template>
 
 <script>
-import ToDoList from "./components/pages/ToDoList.vue";
-
 export default {
   name: "App",
   components: {
-    ToDoList,
+    ToDoList: () => import("@/components/pages/ToDoList.vue"),
   },
 };
 </script>
