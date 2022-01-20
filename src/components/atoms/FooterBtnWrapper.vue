@@ -24,9 +24,7 @@ export default {
 .footer__btn-wrapper {
   :not(:last-child) {
     margin-right: 1rem;
-    @media (max-width: 490px) {
-      margin-right: 0;
-    }
+    @include MediaFooterBntmobile;
   }
 }
 </style>

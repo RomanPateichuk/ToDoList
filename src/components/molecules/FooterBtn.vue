@@ -9,7 +9,10 @@
 <script>
 export default {
   props: {
-    FooterBtnValue: String,
+    FooterBtnValue: {
+      type: String,
+      value: "",
+    },
   },
 };
 </script>

@@ -11,7 +11,12 @@ export default {
     RemoveTaskBtn: () => import("@/components/molecules/RemoveTaskBtn.vue"),
     DoneTaskBtn: () => import("@/components/molecules/DoneTaskBtn.vue"),
   },
-  props: ["TaskValue"],
+  props: {
+    TaskValue: {
+      type: String,
+      default: "",
+    },
+  },
 };
 </script>
 

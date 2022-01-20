@@ -24,13 +24,7 @@ export default {
   background: $task-remove;
   padding: 0 1.875rem;
   font-family: "Open Sans", sans-serif;
-  @media (max-width: 410px) {
-    font-size: 1rem;
-    padding: 0 1rem;
-  }
-  @media (max-width: 314px) {
-    flex-direction: column;
-  }
+  @include MediaFooterMobile;
 
   * {
     color: $footer-font-color;

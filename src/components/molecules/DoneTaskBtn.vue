@@ -7,7 +7,12 @@
 
 <script>
 export default {
-  props: ["TaskValue"],
+  props: {
+    TaskValue: {
+      type: String,
+      default: "",
+    },
+  },
 };
 </script>
 

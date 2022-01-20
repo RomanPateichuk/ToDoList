@@ -34,8 +34,6 @@ export default {
   display: flex;
   padding: 0 1.875rem 0 1.875rem;
   flex-direction: column;
-  @media (max-width: 450px) {
-    padding: 0 0.5rem;
-  }
+  @include MediaMainMobile;
 }
 </style>
