@@ -1,7 +1,7 @@
 <template>
-  <label :class="$style.btn__label"
+  <label :class="$style.btns_wrapper"
     ><input type="radio" name="radio-footer" /><span
-      :class="$style.btn__radio"
+      :class="$style.radio"
       >{{ FooterBtnValue }}</span
     ></label
   >
@@ -20,20 +20,20 @@ export default {
 
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";
-.btn__label {
+.btns_wrapper {
   input[type="radio"] {
     appearance: none;
   }
 
   input[type="radio"]:checked {
-    + .btn__radio {
+    + .radio {
       border: 1px solid $footer-border-btn;
       border-radius: 10px;
       box-sizing: border-box;
     }
   }
 
-  .btn__radio {
+  .radio {
     border: 1px solid transparent;
     box-sizing: border-box;
     padding: 0.3rem;

@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.new__task">
+  <div :class="$style.new">
     <AddTaskBtn />
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";
 
-.new__task {
+.new{
   @include Task;
   background: $new-task-bg;
   border: 1.5px dashed $task-remove;

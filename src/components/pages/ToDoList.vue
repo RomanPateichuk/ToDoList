@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.wrapper">
-    <div :class="$style.wrapper__main">
+    <div :class="$style.main">
       <Header />
       <Main />
       <Footer />
@@ -8,7 +8,7 @@
     <img
       src="@/assets/img/background_img.png"
       alt="background"
-      :class="$style.bg_img"
+      :class="$style.bg"
     />
   </div>
 </template>
@@ -33,14 +33,14 @@ export default {
   padding: 0 1rem;
   margin: 2.5rem auto 0 auto;
 
-  .bg_img {
+  .bg {
     z-index: 1;
     position: absolute;
     right: 4rem;
     top: -2rem;
   }
 
-  .wrapper__main {
+  .main {
     background-color: $main;
     max-width: 33.75rem;
     margin: 0 auto;

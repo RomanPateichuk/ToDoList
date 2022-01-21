@@ -1,6 +1,6 @@
 <template>
   <main :class="$style.main">
-    <div :class="$style.tasks__wrapper">
+    <div :class="$style.tasks">
       <Task v-for="(task, id) in tasks" :key="id" :TaskValue="task.value" />
       <AddTask />
     </div>
@@ -36,7 +36,7 @@ export default {
   flex-direction: column;
   @include MediaMainMobile;
 
-  .tasks__wrapper {
+  .tasks{
     margin: 1.875rem 0 0 0;
   }
 }

@@ -1,11 +1,11 @@
 <template>
-  <button :class="$style.task__remove">&times;</button>
+  <button :class="$style.remove">&times;</button>
 </template>
 
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";
 
-.task__remove {
+.remove {
   display: flex;
   justify-content: center;
   width: 1.5rem;

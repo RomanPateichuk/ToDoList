@@ -1,6 +1,6 @@
 <template>
-  <label :class="$style.task__text">
-    <input type="checkbox" :class="$style.task__done" />
+  <label :class="$style.task">
+    <input type="checkbox" :class="$style.done" />
     <span :class="$style.text">{{ TaskValue }}</span>
   </label>
 </template>
@@ -19,7 +19,7 @@ export default {
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";
 
-.task__text {
+.task {
   color: $task-text;
   padding: 0 1.4375rem 0 3rem;
 
@@ -52,11 +52,11 @@ export default {
     }
   }
 
-  .task__done {
+  .done {
     appearance: none;
   }
 
-  .task__done:checked {
+  .done:checked {
     + .text {
       text-decoration: line-through;
       &:after {

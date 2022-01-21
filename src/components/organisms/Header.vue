@@ -1,6 +1,6 @@
 <template>
   <header :class="$style.header">
-    <h1 :class="$style.app_name">to do list</h1>
+    <h1 :class="$style.name">to do list</h1>
   </header>
 </template>
 
@@ -13,7 +13,7 @@
   text-align: center;
   height: 3.125rem;
 
-  .app_name {
+  .name {
     font-size: 1.25rem;
     line-height: 2.5rem;
   }
