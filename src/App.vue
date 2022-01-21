@@ -3,25 +3,23 @@
 </template>
 
 <script>
-import ToDoList from "./components/ToDoList.vue";
-
 export default {
   name: "App",
   components: {
-    ToDoList,
+    ToDoList: () => import("@/components/pages/ToDoList.vue"),
   },
 };
 </script>
 
 <style lang="scss">
 @import "scss-reset/_reset.scss";
-@import "./src/assets/scss/variabels.scss";
+@import "@/assets/scss/main.scss";
 body {
   overflow: hidden;
+  background: $wrapper;
   font: {
     family: "Inter", sans-serif;
     size: 20px;
   }
-  background: $wrapper;
 }
 </style>
