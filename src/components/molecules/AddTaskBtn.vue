@@ -1,8 +1,8 @@
 <template>
-  <input type="text" class="add__task" placeholder="Add a new task" />
+  <input type="text" :class="$style.add__task" placeholder="Add a new task" />
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import "@/assets/scss/main.scss";
 
 .add__task {

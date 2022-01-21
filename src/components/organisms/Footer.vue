@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer :class="$style.footer">
     <FooterProgress />
     <FooterBtnWrapper />
   </footer>
@@ -14,7 +14,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import "@/assets/scss/main.scss";
 .footer {
   display: flex;

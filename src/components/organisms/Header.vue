@@ -1,8 +1,10 @@
 <template>
-  <header class="header"><h1>to do list</h1></header>
+  <header :class="$style.header">
+    <h1 :class="$style.app_name">to do list</h1>
+  </header>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import "@/assets/scss/main.scss";
 
 .header {
@@ -11,7 +13,7 @@
   text-align: center;
   height: 3.125rem;
 
-  h1 {
+  .app_name {
     font-size: 1.25rem;
     line-height: 2.5rem;
   }

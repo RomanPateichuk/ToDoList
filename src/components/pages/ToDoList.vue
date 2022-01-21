@@ -1,11 +1,15 @@
 <template>
-  <div class="wrapper">
-    <div class="wrapper__main">
+  <div :class="$style.wrapper">
+    <div :class="$style.wrapper__main">
       <Header />
       <Main />
       <Footer />
     </div>
-    <img src="@/assets/img/background_img.png" alt="background" />
+    <img
+      src="@/assets/img/background_img.png"
+      alt="background"
+      :class="$style.bg_img"
+    />
   </div>
 </template>
 
@@ -19,7 +23,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import "@/assets/scss/main.scss";
 .wrapper {
   @media (max-width: 410px) {
@@ -29,7 +33,7 @@ export default {
   padding: 0 1rem;
   margin: 2.5rem auto 0 auto;
 
-  img {
+  .bg_img {
     z-index: 1;
     position: absolute;
     right: 4rem;

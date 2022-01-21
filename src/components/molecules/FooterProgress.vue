@@ -1,7 +1,7 @@
 <template>
-  <div class="footer__progress">1/3 left</div>
+  <div :class="$style.footer__progress">1/3 left</div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import "@/assets/scss/main.scss";
 </style>

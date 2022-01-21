@@ -1,8 +1,8 @@
 <template>
-  <button class="task__remove">&times;</button>
+  <button :class="$style.task__remove">&times;</button>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import "@/assets/scss/main.scss";
 
 .task__remove {

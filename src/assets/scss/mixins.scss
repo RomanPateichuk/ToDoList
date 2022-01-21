@@ -19,3 +19,14 @@
         padding: 0 0.5rem;
       }
 }
+
+@mixin Task {
+    display: flex;
+    background: $task;
+    border-radius: 0.625rem;
+    padding: 0 1.25rem;
+    height: 3.125rem;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative; 
+}

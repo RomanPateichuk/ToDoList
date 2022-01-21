@@ -1,5 +1,5 @@
 <template>
-  <div class="task">
+  <div :class="$style.task">
     <DoneTaskBtn :TaskValue="TaskValue" />
     <RemoveTaskBtn />
   </div>
@@ -20,10 +20,11 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import "@/assets/scss/main.scss";
 
 .task {
+  @include Task;
   &:not(:first-child) {
     margin: 1.5625rem 0 0 0;
   }

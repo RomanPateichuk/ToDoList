@@ -1,5 +1,5 @@
 <template>
-  <div class="footer__btn-wrapper">
+  <div :class="$style.footer_btn">
     <FooterBtn
       v-for="(btn, index) in btns"
       :key="index"
@@ -19,9 +19,9 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss">
+<style lang="scss" module>
 @import "@/assets/scss/main.scss";
-.footer__btn-wrapper {
+.footer_btn {
   :not(:last-child) {
     margin-right: 1rem;
     @include MediaFooterBntmobile;

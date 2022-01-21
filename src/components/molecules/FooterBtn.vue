@@ -1,8 +1,9 @@
 <template>
-  <label class="btn__label"
-    ><input type="radio" name="radio-footer" /><span class="btn__radio">{{
-      FooterBtnValue
-    }}</span></label
+  <label :class="$style.btn__label"
+    ><input type="radio" name="radio-footer" /><span
+      :class="$style.btn__radio"
+      >{{ FooterBtnValue }}</span
+    ></label
   >
 </template>
 
@@ -17,7 +18,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import "@/assets/scss/main.scss";
 .btn__label {
   input[type="radio"] {

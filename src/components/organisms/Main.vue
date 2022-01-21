@@ -1,6 +1,6 @@
 <template>
-  <main class="main">
-    <div class="tasks__wrapper">
+  <main :class="$style.main">
+    <div :class="$style.tasks__wrapper">
       <Task v-for="(task, id) in tasks" :key="id" :TaskValue="task.value" />
       <AddTask />
     </div>
@@ -27,7 +27,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" module>
 @import "@/assets/scss/main.scss";
 
 .main {
@@ -35,5 +35,9 @@ export default {
   padding: 0 1.875rem 0 1.875rem;
   flex-direction: column;
   @include MediaMainMobile;
+
+  .tasks__wrapper {
+    margin: 1.875rem 0 0 0;
+  }
 }
 </style>
