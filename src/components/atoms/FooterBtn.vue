@@ -1,18 +1,31 @@
 <template>
   <label :class="$style.btns_wrapper"
-    ><input type="radio" name="radio-footer" /><span
-      :class="$style.radio"
-      >{{ FooterBtnValue }}</span
-    ></label
+    ><input
+      type="radio"
+      name="radio-footer"
+      v-on:click="filter(FooterBtnValue)"
+    /><span :class="$style.radio">{{ FooterBtnValue }}</span></label
   >
 </template>
 
 <script>
+import EventBus from "../../event-bus";
 export default {
   props: {
     FooterBtnValue: {
       type: String,
       value: "",
+    },
+  },
+  methods: {
+    filter: function (FooterBtnValue) {
+      if (FooterBtnValue === "Active") {
+        EventBus.$emit("CallActiveTasks");
+      } else if (FooterBtnValue === "Completed") {
+        EventBus.$emit("CallCompletedTasks");
+      } else if (FooterBtnValue === "All") {
+        EventBus.$emit("CallAllTasks");
+      }
     },
   },
 };

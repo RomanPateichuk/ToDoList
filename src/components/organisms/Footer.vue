@@ -8,8 +8,9 @@
 <script>
 export default {
   components: {
-    FooterBtnWrapper: () => import("@/components/atoms/FooterBtnWrapper.vue"),
-    FooterProgress: () => import("@/components/molecules/FooterProgress.vue"),
+    FooterBtnWrapper: () =>
+      import("@/components/molecules/FooterBtnWrapper.vue"),
+    FooterProgress: () => import("@/components/atoms/FooterProgress.vue"),
   },
 };
 </script>

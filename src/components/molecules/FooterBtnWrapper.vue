@@ -10,7 +10,7 @@
 <script>
 export default {
   components: {
-    FooterBtn: () => import("@/components/molecules/FooterBtn.vue"),
+    FooterBtn: () => import("@/components/atoms/FooterBtn.vue"),
   },
   data() {
     return {

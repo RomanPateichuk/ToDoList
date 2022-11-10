@@ -7,7 +7,7 @@
 <script>
 export default {
   components: {
-    AddTaskBtn: () => import("@/components/molecules/AddTaskBtn.vue"),
+    AddTaskBtn: () => import("@/components/atoms/AddTaskBtn.vue"),
   },
 };
 </script>
@@ -15,7 +15,7 @@ export default {
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";
 
-.new{
+.new {
   @include Task;
   background: $new-task-bg;
   border: 1.5px dashed $task-remove;

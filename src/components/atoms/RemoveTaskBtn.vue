@@ -1,6 +1,18 @@
 <template>
-  <button :class="$style.remove">&times;</button>
+  <button @click="$emit('CallDeleteTask')" :class="$style.remove">
+    &times;
+  </button>
 </template>
+<script>
+//import EventBus from '../../event-bus';
+export default {
+  methods: {
+    // DeleteTask() {
+    //   EventBus.$emit("CallDeleteTask")
+    // },
+  },
+};
+</script>
 
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";

@@ -1,15 +1,15 @@
 <template>
   <div :class="$style.task">
-    <DoneTaskBtn :TaskValue="TaskValue" />
-    <RemoveTaskBtn />
+    <DoneTaskBtn :TaskValue="TaskValue" @complete="$emit('CallCompleteTask')" />
+    <RemoveTaskBtn @CallDeleteTask="$emit('deleteTask')" />
   </div>
 </template>
 
 <script>
 export default {
   components: {
-    RemoveTaskBtn: () => import("@/components/molecules/RemoveTaskBtn.vue"),
-    DoneTaskBtn: () => import("@/components/molecules/DoneTaskBtn.vue"),
+    RemoveTaskBtn: () => import("@/components/atoms/RemoveTaskBtn.vue"),
+    DoneTaskBtn: () => import("@/components/atoms/DoneTaskBtn.vue"),
   },
   props: {
     TaskValue: {
