@@ -14,11 +14,8 @@ export default new Vuex.Store({
       { id: 286, value: "Сделать таск по VUE Todo", checked: false },
     ],
 
-    filter: 'ALL'
+    filter: "ALL",
   },
-
-
-
 
   getters: {
     get_tasks_active: (state) => {
@@ -26,26 +23,25 @@ export default new Vuex.Store({
     },
 
     getDoneCount: (state) => {
-      return state.tasks_active.reduce((prev, el) => (el.checked == true ? prev + 1 : prev), 0);
+      return state.tasks_active.reduce(
+        (prev, el) => (el.checked == true ? prev + 1 : prev),
+        0
+      );
     },
 
     callFilter: (state) => {
       if (state.filter == "ALL") {
-        return state.tasks_active
+        return state.tasks_active;
+      } else if (state.filter == "ACTIVE") {
+        return state.tasks_active.filter((item) => item.checked == false);
+      } else if (state.filter == "COMPLETED") {
+        return state.tasks_active.filter((item) => item.checked == true);
       }
-      else if (state.filter == "ACTIVE") {
-        return state.tasks_active.filter(item => item.checked == false);
-      }
-      else if (state.filter == "COMPLETED") {
-        return state.tasks_active.filter(item => item.checked == true);
-      }
-    }
-
+    },
   },
   mutations: {
     DeleteActiveTask: (state, id) => {
       state.tasks_active = state.tasks_active.filter((task) => task.id != id);
-
     },
 
     AddTask: (state, task) => {
@@ -66,11 +62,8 @@ export default new Vuex.Store({
     },
 
     UpdateTasks: (state) => {
-      state.tasks_active = JSON.parse(localStorage.getItem('tasks'))
-    }
-
-
-
+      state.tasks_active = JSON.parse(localStorage.getItem("tasks"));
+    },
   },
   actions: {},
   modules: {},
