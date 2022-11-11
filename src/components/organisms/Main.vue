@@ -19,8 +19,7 @@
         :key="index"
         :id="item.id"
         :TaskValue="item.value"
-        
-       @deleteTask="() => DeleteDoneTask(item.id)" 
+        @deleteTask="() => DeleteDoneTask(item.id)"
       /> -->
 
       <AddTask />

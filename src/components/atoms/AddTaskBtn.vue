@@ -23,6 +23,7 @@ export default {
       let obj = {
         id: uid(),
         value: this.NewTaskText,
+        checked: false,
       };
       this.$store.commit("AddTask", obj);
       this.NewTaskText = "";

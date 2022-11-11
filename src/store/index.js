@@ -14,6 +14,8 @@ export default new Vuex.Store({
       { id: 256, value: "Сделать таск по REACT", checked: false },
       { id: 286, value: "Сделать таск по VUE Todo", checked: false },
     ],
+
+    tasks_done: [],
   },
 
   getters: {
@@ -25,12 +27,8 @@ export default new Vuex.Store({
       return state.tasks_done;
     },
 
-    getActiveCount: (state) => {
-      return state.tasks_active.reduce((prev, el) => (el.checked == false ? prev + 1 : prev), 0);
-    },
-
-    getDoneCount: () => {
-
+    getDoneCount: (state) => {
+      return state.tasks_active.reduce((prev, el) => (el.checked == true ? prev + 1 : prev), 0);
     }
 
   },
@@ -44,16 +42,20 @@ export default new Vuex.Store({
     },
 
     AddTask: (state, task) => {
-      //state.tasks_active.push(task);
-      state.tasks_active = [].concat(task, state.tasks_active);
+      state.tasks_active = state.tasks_active.concat(task);
     },
 
     CompleteTask: (state, id) => {
-      // let task = state.tasks_active.find((item) => item.id === id)
-      // state.tasks_done.push(task);
+      // state.tasks_done = state.tasks_done.concat(state.tasks_active.filter((task) => task.id == id))
+      // state.tasks_active = state.tasks_active.filter((task) => task.id != id);
+
       state.tasks_active = state.tasks_active.map((item) => {
         if (item.id === id) {
-          item.checked = true;
+          if (item.checked == false) {
+            item.checked = true;
+          }
+          else
+            item.checked = false;
           return item;
         } else return item;
       });

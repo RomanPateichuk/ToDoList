@@ -1,31 +1,18 @@
 <template>
-  <div :class="$style.progress">{{ X }}/{{ getActiveCount }} left</div>
+  <div :class="$style.progress">
+    {{ getDoneCount }}/{{ get_tasks_active.length }} left
+  </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 
 export default {
-  computed: {
-    ...mapGetters(["getActiveCount"]),
-
-    // getTaskActiveCount: function () {
-    //   return this.get_tasks_active.reduce(
-    //     (prev, el) => (el.checked == false ? prev + 1 : prev),
-    //     0
-    //   );
-    // },
-    // getTaskDoneCount: function () {
-    //   return this.get_tasks_active.reduce(
-    //     (prev, el) => (el.checked == true ? prev + 1 : prev),
-    //     0
-    //   );
-    // },
+  data: function () {
+    return {};
   },
-  methods: {
-    // getTaskDoneCount: function(){
-    //   return this.get_tasks_active.reduce((prev, el) => (el.checked == true) ? prev + 1: prev, 0);
-    // },
+  computed: {
+    ...mapGetters(["get_tasks_active", "getDoneCount"]),
   },
 };
 </script>
