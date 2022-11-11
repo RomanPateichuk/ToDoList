@@ -2,8 +2,7 @@
   <main :class="$style.main">
     <div :class="$style.tasks">
       <Task
-        v-show="showAllTask"
-        v-for="(item, index) in get_tasks_active"
+        v-for="(item, index) in callFilter"
         :id="item.id"
         :key="index"
         :isChecked="item.checked"
@@ -12,38 +11,7 @@
         @CallCompleteTask="() => CompleteTask(item.id)"
       />
 
-      <Task
-        v-show="showDoneTask"
-        v-for="(item, index) in get_tasks_done"
-        :id="item.id"
-        :key="'A' + index"
-        :TaskValue="item.value"
-        @deleteTask="() => DeleteActiveTask(item.id)"
-        @CallCompleteTask="() => CompleteTask(item.id)"
-      />
-
-      <Task
-        v-show="showActiveTask"
-        v-for="(item, index) in get_tasks_activee"
-        :id="item.id"
-        :key="'B' + index"
-        :TaskValue="item.value"
-        @deleteTask="() => DeleteActiveTask(item.id)"
-        @CallCompleteTask="() => CompleteTask(item.id)"
-      />
-
       <div v-if="get_tasks_active == 0">Новых задач нет</div>
-      <br />
-      <hr />
-      <!-- <Task
-        v-show="showTaskDone"
-        v-for="(item, index) in get_tasks_done"
-        :key="index"
-        :id="item.id"
-        :TaskValue="item.value"
-        @deleteTask="() => DeleteDoneTask(item.id)"
-      /> -->
-
       <AddTask />
     </div>
   </main>
@@ -63,51 +31,34 @@ export default {
     EventBus.$on("CallCompletedTasks", () => {
       this.CompletedTasks();
     });
-    // EventBus.$on("CallDeleteTask", () => {
-    //   this.DeleteTask();
-    // });
   },
   components: {
     Task: () => import("@/components/molecules/TaskWrapper.vue"),
     AddTask: () => import("@/components/molecules/AddTaskWrapper.vue"),
   },
-  data: function () {
-    return {
-      showAllTask: true,
-      showDoneTask: false,
-      showActiveTask: false,
-    };
-  },
   computed: {
-    ...mapGetters(["get_tasks_active", "get_tasks_done", "get_tasks_activee"]),
+    ...mapGetters(["callFilter", "get_tasks_active"]),
   },
+  data: function () {
+    return {};
+  },
+
   methods: {
     ActiveTasks: function () {
-      this.showActiveTask = true;
-      this.showDoneTask = false;
-      this.showAllTask = false;
+      this.$store.commit("setFilter", "ACTIVE");
     },
     AllTasks: function () {
-      this.showAllTask = true;
-      this.showDoneTask = false;
-      this.showActiveTask = false;
+      this.$store.commit("setFilter", "ALL");
     },
     CompletedTasks: function () {
-      this.showDoneTask = true;
-      this.showAllTask = false;
-      this.showActiveTask = false;
+      this.$store.commit("setFilter", "COMPLETED");
     },
     DeleteActiveTask: function (id) {
       this.$store.commit("DeleteActiveTask", id);
     },
 
-    DeleteDoneTask: function (id) {
-      this.$store.commit("DeleteDoneTask", id);
-    },
-
     CompleteTask: function (id) {
       this.$store.commit("CompleteTask", id);
-      //this.DeleteActiveTask(id)
     },
   },
 };
