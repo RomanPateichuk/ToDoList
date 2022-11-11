@@ -37,7 +37,6 @@ export default {
   input[type="radio"] {
     appearance: none;
   }
-
   input[type="radio"]:checked {
     + .radio {
       border: 1px solid $footer-border-btn;
@@ -45,7 +44,6 @@ export default {
       box-sizing: border-box;
     }
   }
-
   .radio {
     border: 1px solid transparent;
     box-sizing: border-box;
