@@ -1,6 +1,10 @@
 <template>
   <div :class="$style.task">
-    <DoneTaskBtn :TaskValue="TaskValue" @complete="$emit('CallCompleteTask')" />
+    <DoneTaskBtn
+      :TaskValue="TaskValue"
+      @complete="$emit('CallCompleteTask')"
+      :isChecked="isChecked"
+    />
     <RemoveTaskBtn @CallDeleteTask="$emit('deleteTask')" />
   </div>
 </template>
@@ -15,6 +19,9 @@ export default {
     TaskValue: {
       type: String,
       default: "",
+    },
+    isChecked: {
+      type: Boolean,
     },
   },
 };

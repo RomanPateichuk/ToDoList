@@ -6,6 +6,7 @@
         v-for="(item, index) in get_tasks_active"
         :id="item.id"
         :key="index"
+        :isChecked="item.checked"
         :TaskValue="item.value"
         @deleteTask="() => DeleteActiveTask(item.id)"
         @CallCompleteTask="() => CompleteTask(item.id)"

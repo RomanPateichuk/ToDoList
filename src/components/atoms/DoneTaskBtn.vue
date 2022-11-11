@@ -4,7 +4,7 @@
       type="checkbox"
       :class="$style.done"
       @click="$emit('complete')"
-      :checked="false"
+      v-model="isChecked"
     />
     <span :class="$style.text">{{ TaskValue }}</span>
   </label>
@@ -16,6 +16,9 @@ export default {
     TaskValue: {
       type: String,
       default: "",
+    },
+    isChecked: {
+      type: Boolean,
     },
   },
 };
