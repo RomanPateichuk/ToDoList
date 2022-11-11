@@ -2,7 +2,6 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 Vue.use(Vuex);
-
 export default new Vuex.Store({
   state: {
     tasks_active: [
@@ -17,6 +16,9 @@ export default new Vuex.Store({
 
     filter: 'ALL'
   },
+
+
+
 
   getters: {
     get_tasks_active: (state) => {
@@ -43,6 +45,7 @@ export default new Vuex.Store({
   mutations: {
     DeleteActiveTask: (state, id) => {
       state.tasks_active = state.tasks_active.filter((task) => task.id != id);
+
     },
 
     AddTask: (state, task) => {
@@ -52,11 +55,7 @@ export default new Vuex.Store({
     CompleteTask: (state, id) => {
       state.tasks_active = state.tasks_active.map((item) => {
         if (item.id === id) {
-          if (item.checked == false) {
-            item.checked = true;
-          }
-          else
-            item.checked = false;
+          item.checked = !item.checked;
           return item;
         } else return item;
       });
@@ -64,7 +63,14 @@ export default new Vuex.Store({
 
     setFilter: (state, param) => {
       state.filter = param;
+    },
+
+    UpdateTasks: (state) => {
+      state.tasks_active = JSON.parse(localStorage.getItem('tasks'))
     }
+
+
+
   },
   actions: {},
   modules: {},

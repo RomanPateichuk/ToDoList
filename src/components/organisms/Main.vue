@@ -31,6 +31,18 @@ export default {
     EventBus.$on("CallCompletedTasks", () => {
       this.CompletedTasks();
     });
+
+    if (localStorage.tasks) {
+      this.$store.commit("UpdateTasks");
+    }
+  },
+  watch: {
+    tasks: function () {
+      localStorage.setItem(
+        "tasks",
+        JSON.stringify(this.$store.getters.get_tasks_active)
+      );
+    },
   },
   components: {
     Task: () => import("@/components/molecules/TaskWrapper.vue"),
@@ -38,6 +50,10 @@ export default {
   },
   computed: {
     ...mapGetters(["callFilter", "get_tasks_active"]),
+
+    tasks() {
+      return this.$store.getters.get_tasks_active;
+    },
   },
   data: function () {
     return {};
