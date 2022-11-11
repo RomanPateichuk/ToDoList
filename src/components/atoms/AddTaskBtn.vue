@@ -10,6 +10,7 @@
   </div>
 </template>
 <script>
+import { uid } from "uid";
 export default {
   data: function () {
     return {
@@ -18,13 +19,13 @@ export default {
   },
 
   methods: {
-   submitNewTask: function () {
-     let obj = {
-        id: "",
+    submitNewTask: function () {
+      let obj = {
+        id: uid(),
         value: this.NewTaskText,
       };
-       this.$store.commit("addTask", obj);
-       this.NewTaskText='';
+      this.$store.commit("AddTask", obj);
+      this.NewTaskText = "";
     },
   },
 };

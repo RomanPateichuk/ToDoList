@@ -1,12 +1,16 @@
 <template>
   <label :class="$style.task">
-    <input type="checkbox" :class="$style.done" @click="$emit('complete')" :checked="false" />
+    <input
+      type="checkbox"
+      :class="$style.done"
+      @click="$emit('complete')"
+      :checked="false"
+    />
     <span :class="$style.text">{{ TaskValue }}</span>
   </label>
 </template>
 
 <script>
-
 export default {
   props: {
     TaskValue: {
@@ -14,7 +18,6 @@ export default {
       default: "",
     },
   },
-
 };
 </script>
 

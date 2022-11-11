@@ -81,7 +81,7 @@ export default {
     },
 
     CompleteTask: function (id) {
-      this.$store.commit("DoneTask", id);
+      this.$store.commit("CompleteTask", id);
       //this.DeleteActiveTask(id)
     },
   },
