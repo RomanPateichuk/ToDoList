@@ -24,7 +24,11 @@ export default new Vuex.Store({
     },
 
     get_tasks_done: (state) => {
-      return state.tasks_done;
+      return state.tasks_active.filter(item => item.checked == true);
+    },
+
+    get_tasks_activee: (state) => {
+      return state.tasks_active.filter(item => item.checked == false);
     },
 
     getDoneCount: (state) => {

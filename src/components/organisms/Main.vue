@@ -2,7 +2,7 @@
   <main :class="$style.main">
     <div :class="$style.tasks">
       <Task
-        v-show="showTaskActive"
+        v-show="showAllTask"
         v-for="(item, index) in get_tasks_active"
         :id="item.id"
         :key="index"
@@ -10,6 +10,27 @@
         @deleteTask="() => DeleteActiveTask(item.id)"
         @CallCompleteTask="() => CompleteTask(item.id)"
       />
+
+      <Task
+        v-show="showDoneTask"
+        v-for="(item, index) in get_tasks_done"
+        :id="item.id"
+        :key="'A' + index"
+        :TaskValue="item.value"
+        @deleteTask="() => DeleteActiveTask(item.id)"
+        @CallCompleteTask="() => CompleteTask(item.id)"
+      />
+
+      <Task
+        v-show="showActiveTask"
+        v-for="(item, index) in get_tasks_activee"
+        :id="item.id"
+        :key="'B' + index"
+        :TaskValue="item.value"
+        @deleteTask="() => DeleteActiveTask(item.id)"
+        @CallCompleteTask="() => CompleteTask(item.id)"
+      />
+
       <div v-if="get_tasks_active == 0">Новых задач нет</div>
       <br />
       <hr />
@@ -51,25 +72,29 @@ export default {
   },
   data: function () {
     return {
-      showTaskDone: true,
-      showTaskActive: true,
+      showAllTask: true,
+      showDoneTask: false,
+      showActiveTask: false,
     };
   },
   computed: {
-    ...mapGetters(["get_tasks_active", "get_tasks_done"]),
+    ...mapGetters(["get_tasks_active", "get_tasks_done", "get_tasks_activee"]),
   },
   methods: {
     ActiveTasks: function () {
-      this.showTaskActive = true;
-      this.showTaskDone = false;
+      this.showActiveTask = true;
+      this.showDoneTask = false;
+      this.showAllTask = false;
     },
     AllTasks: function () {
-      this.showTaskDone = true;
-      this.showTaskActive = true;
+      this.showAllTask = true;
+      this.showDoneTask = false;
+      this.showActiveTask = false;
     },
     CompletedTasks: function () {
-      this.showTaskDone = true;
-      this.showTaskActive = false;
+      this.showDoneTask = true;
+      this.showAllTask = false;
+      this.showActiveTask = false;
     },
     DeleteActiveTask: function (id) {
       this.$store.commit("DeleteActiveTask", id);
