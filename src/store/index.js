@@ -14,7 +14,7 @@ export default new Vuex.Store({
       { id: 286, value: "Сделать таск по VUE Todo", checked: false },
     ],
 
-    filter: "ALL",
+    filter: "All",
   },
 
   getters: {
@@ -29,12 +29,12 @@ export default new Vuex.Store({
       );
     },
 
-    callFilter: (state) => {
-      if (state.filter == "ALL") {
+    getFilter: (state) => {
+      if (state.filter == "All") {
         return state.tasks_active;
-      } else if (state.filter == "ACTIVE") {
+      } else if (state.filter == "Active") {
         return state.tasks_active.filter((item) => item.checked == false);
-      } else if (state.filter == "COMPLETED") {
+      } else if (state.filter == "Completed") {
         return state.tasks_active.filter((item) => item.checked == true);
       }
     },
@@ -57,8 +57,8 @@ export default new Vuex.Store({
       });
     },
 
-    setFilter: (state, param) => {
-      state.filter = param;
+    setFilter: (state, FooterBtnValue) => {
+      state.filter = FooterBtnValue;
     },
 
     UpdateTasks: (state) => {

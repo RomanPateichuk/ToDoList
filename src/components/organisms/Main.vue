@@ -2,7 +2,7 @@
   <main :class="$style.main">
     <div :class="$style.tasks">
       <Task
-        v-for="(item, index) in callFilter"
+        v-for="(item, index) in getFilter"
         :id="item.id"
         :key="index"
         :isChecked="item.checked"
@@ -10,7 +10,6 @@
         @deleteTask="() => DeleteActiveTask(item.id)"
         @CallCompleteTask="() => CompleteTask(item.id)"
       />
-
       <div v-if="get_tasks_active == 0">Новых задач нет</div>
       <AddTask />
     </div>
@@ -22,14 +21,8 @@ import EventBus from "../../event-bus";
 import { mapGetters } from "vuex";
 export default {
   mounted() {
-    EventBus.$on("CallActiveTasks", () => {
-      this.ActiveTasks();
-    });
-    EventBus.$on("CallAllTasks", () => {
-      this.AllTasks();
-    });
-    EventBus.$on("CallCompletedTasks", () => {
-      this.CompletedTasks();
+    EventBus.$on("SetFilter", (FooterBtnValue) => {
+      this.SetFilter(FooterBtnValue);
     });
 
     if (localStorage.tasks) {
@@ -49,26 +42,18 @@ export default {
     AddTask: () => import("@/components/molecules/AddTaskWrapper.vue"),
   },
   computed: {
-    ...mapGetters(["callFilter", "get_tasks_active"]),
+    ...mapGetters(["getFilter", "get_tasks_active"]),
 
     tasks() {
       return this.$store.getters.get_tasks_active;
     },
   },
-  data: function () {
-    return {};
-  },
 
   methods: {
-    ActiveTasks: function () {
-      this.$store.commit("setFilter", "ACTIVE");
+    SetFilter: function (FooterBtnValue) {
+      this.$store.commit("setFilter", FooterBtnValue);
     },
-    AllTasks: function () {
-      this.$store.commit("setFilter", "ALL");
-    },
-    CompletedTasks: function () {
-      this.$store.commit("setFilter", "COMPLETED");
-    },
+
     DeleteActiveTask: function (id) {
       this.$store.commit("DeleteActiveTask", id);
     },

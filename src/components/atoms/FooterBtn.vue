@@ -3,7 +3,7 @@
     ><input
       type="radio"
       name="radio-footer"
-      v-on:click="filter(FooterBtnValue)"
+      v-on:click="CallSetFilter(FooterBtnValue)"
     /><span :class="$style.radio">{{ FooterBtnValue }}</span></label
   >
 </template>
@@ -18,14 +18,8 @@ export default {
     },
   },
   methods: {
-    filter: function (FooterBtnValue) {
-      if (FooterBtnValue === "Active") {
-        EventBus.$emit("CallActiveTasks");
-      } else if (FooterBtnValue === "Completed") {
-        EventBus.$emit("CallCompletedTasks");
-      } else if (FooterBtnValue === "All") {
-        EventBus.$emit("CallAllTasks");
-      }
+    CallSetFilter: function (FooterBtnValue) {
+      EventBus.$emit("SetFilter", FooterBtnValue);
     },
   },
 };
