@@ -6,7 +6,10 @@
       v-on:click="CompleteTask(id)"
       v-model="isChecked"
     />
+
+    <!-- <input type="text" v-model="value" :readonly="readonly" /> -->
     <span :class="$style.text">{{ TaskValue }}</span>
+    <!-- <button v-on:click="EditTask(id)">{{ editStatus }}</button> -->
   </label>
 </template>
 
@@ -16,6 +19,9 @@ export default {
   data() {
     return {
       checked: false,
+      readonly: true,
+      editStatus: "edit",
+      value: this.TaskValue,
     };
   },
   props: {
@@ -34,6 +40,18 @@ export default {
     CompleteTask: function (id) {
       EventBus.$emit("CallCompleteTask", id);
     },
+
+    // EditTask: function (id) {
+    //   if (this.editStatus === "edit") {
+    //     this.editStatus = "save";
+    //   } else {
+    //     this.editStatus = "edit";
+    //     console.log("id", typeof id);
+    //     console.log("text", this.value);
+    //     this.$store.commit("SaveEditTask", this.value, this.id);
+    //   }
+    //   this.readonly = !this.readonly;
+    // },
   },
 };
 </script>

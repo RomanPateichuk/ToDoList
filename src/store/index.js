@@ -64,6 +64,15 @@ export default new Vuex.Store({
     UpdateTasks: (state) => {
       state.tasks_active = JSON.parse(localStorage.getItem("tasks"));
     },
+
+    // SaveEditTask: (state, text, id) => {
+    //   state.tasks_active = state.tasks_active.map((item) => {
+    //     if (item.id == id) {
+    //       item.value = text;
+    //       return item;
+    //     } else return item;
+    //   });
+    // }
   },
   actions: {},
   modules: {},
