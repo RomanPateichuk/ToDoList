@@ -5,13 +5,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     tasks_active: [
-      { id: 1, value: "Task 1", checked: false },
-      { id: 2, value: "Task 2", checked: false },
-      { id: 3, value: "Task 3", checked: false },
-      { id: 4, value: "Task 4", checked: false },
-      { id: 255, value: "Сделать таск по VUE", checked: false },
-      { id: 256, value: "Сделать таск по REACT", checked: false },
-      { id: 286, value: "Сделать таск по VUE Todo", checked: false },
+      { id: "1", value: "Task 1", checked: false },
+      { id: "2", value: "Task 2", checked: false },
+      { id: "3", value: "Task 3", checked: false },
+      { id: "4", value: "Task 4", checked: false },
+      { id: "255", value: "Сделать таск по VUE", checked: false },
+      { id: "256", value: "Сделать таск по REACT", checked: false },
+      { id: "286", value: "Сделать таск по VUE Todo", checked: false },
     ],
 
     filter: "All",
@@ -40,7 +40,7 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    DeleteActiveTask: (state, id) => {
+    DeleteTask: (state, id) => {
       state.tasks_active = state.tasks_active.filter((task) => task.id != id);
     },
 

@@ -1,11 +1,7 @@
 <template>
   <div :class="$style.task">
-    <DoneTaskBtn
-      :TaskValue="TaskValue"
-      @complete="$emit('CallCompleteTask')"
-      :isChecked="isChecked"
-    />
-    <RemoveTaskBtn @CallDeleteTask="$emit('deleteTask')" />
+    <DoneTaskBtn :TaskValue="TaskValue" :isChecked="isChecked" :id="id" />
+    <RemoveTaskBtn :id="id" />
   </div>
 </template>
 
@@ -22,6 +18,9 @@ export default {
     },
     isChecked: {
       type: Boolean,
+    },
+    id: {
+      type: String,
     },
   },
 };

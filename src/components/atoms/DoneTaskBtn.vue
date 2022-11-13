@@ -3,7 +3,7 @@
     <input
       type="checkbox"
       :class="$style.done"
-      @click="$emit('complete')"
+      v-on:click="CompleteTask(id)"
       v-model="isChecked"
     />
     <span :class="$style.text">{{ TaskValue }}</span>
@@ -11,7 +11,13 @@
 </template>
 
 <script>
+import EventBus from "../../event-bus";
 export default {
+  data() {
+    return {
+      checked: false,
+    };
+  },
   props: {
     TaskValue: {
       type: String,
@@ -19,6 +25,14 @@ export default {
     },
     isChecked: {
       type: Boolean,
+    },
+    id: {
+      type: String,
+    },
+  },
+  methods: {
+    CompleteTask: function (id) {
+      EventBus.$emit("CallCompleteTask", id);
     },
   },
 };

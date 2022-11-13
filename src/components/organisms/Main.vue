@@ -7,8 +7,6 @@
         :key="index"
         :isChecked="item.checked"
         :TaskValue="item.value"
-        @deleteTask="() => DeleteActiveTask(item.id)"
-        @CallCompleteTask="() => CompleteTask(item.id)"
       />
       <div v-if="get_tasks_active == 0">Новых задач нет</div>
       <AddTask />
@@ -23,6 +21,14 @@ export default {
   mounted() {
     EventBus.$on("SetFilter", (FooterBtnValue) => {
       this.SetFilter(FooterBtnValue);
+    });
+
+    EventBus.$on("CallDeleteTask", (id) => {
+      this.DeleteTask(id);
+    });
+
+    EventBus.$on("CallCompleteTask", (id) => {
+      this.CompleteTask(id);
     });
 
     if (localStorage.tasks) {
@@ -54,8 +60,8 @@ export default {
       this.$store.commit("setFilter", FooterBtnValue);
     },
 
-    DeleteActiveTask: function (id) {
-      this.$store.commit("DeleteActiveTask", id);
+    DeleteTask: function (id) {
+      this.$store.commit("DeleteTask", id);
     },
 
     CompleteTask: function (id) {

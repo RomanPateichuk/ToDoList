@@ -1,15 +1,18 @@
 <template>
-  <button @click="$emit('CallDeleteTask')" :class="$style.remove">
-    &times;
-  </button>
+  <button v-on:click="DeleteTask(id)" :class="$style.remove">&times;</button>
 </template>
 <script>
-//import EventBus from '../../event-bus';
+import EventBus from "../../event-bus";
 export default {
+  props: {
+    id: {
+      type: String,
+    },
+  },
   methods: {
-    // DeleteTask() {
-    //   EventBus.$emit("CallDeleteTask")
-    // },
+    DeleteTask: function (id) {
+      EventBus.$emit("CallDeleteTask", id);
+    },
   },
 };
 </script>
