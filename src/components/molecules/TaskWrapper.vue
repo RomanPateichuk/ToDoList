@@ -1,15 +1,17 @@
 <template>
   <div :class="$style.task">
-    <DoneTaskBtn :TaskValue="TaskValue" :isChecked="isChecked" :id="id" />
-    <RemoveTaskBtn :id="id" />
+    <DoneTask :isChecked="isChecked" :id="id" />
+    <EditTask :isChecked="isChecked" :TaskValue="TaskValue" :id="id" />
+    <RemoveTask :id="id" />
   </div>
 </template>
 
 <script>
 export default {
   components: {
-    RemoveTaskBtn: () => import("@/components/atoms/RemoveTaskBtn.vue"),
-    DoneTaskBtn: () => import("@/components/atoms/DoneTaskBtn.vue"),
+    RemoveTask: () => import("@/components/atoms/RemoveTask.vue"),
+    EditTask: () => import("@/components/atoms/EditTask.vue"),
+    DoneTask: () => import("@/components/atoms/DoneTask.vue"),
   },
   props: {
     TaskValue: {

@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.task">
+  <div :class="$style.wrapper">
     <input
       :id="id"
       type="checkbox"
@@ -8,16 +8,6 @@
       v-model="isChecked"
     />
     <label :for="id" :class="$style.chbEmptyLabel"></label>
-    <input
-      :class="{ [$style.text]: true, [$style.active]: ActiveInput }"
-      type="text"
-      v-model="value"
-      :readonly="readonly"
-      v-on:keyup.enter="EditTask(id, value)"
-    />
-    <button :class="$style.edit" v-on:click="EditTask(id, value)">
-      {{ editStatus }}
-    </button>
   </div>
 </template>
 
@@ -25,18 +15,9 @@
 import EventBus from "../../event-bus";
 export default {
   data() {
-    return {
-      readonly: true,
-      editStatus: "edit",
-      value: this.TaskValue,
-      ActiveInput: false,
-    };
+    return {};
   },
   props: {
-    TaskValue: {
-      type: String,
-      default: "",
-    },
     isChecked: {
       type: Boolean,
     },
@@ -48,30 +29,13 @@ export default {
     CompleteTask: function (id) {
       EventBus.$emit("CallCompleteTask", id);
     },
-    EditTask: function (id, value) {
-      this.ActiveInput = !this.ActiveInput;
-      if (this.editStatus === "edit") {
-        this.editStatus = "save";
-      } else {
-        this.editStatus = "edit";
-        this.$store.commit({
-          type: "SaveEditTask",
-          id: id,
-          value: value,
-        });
-      }
-      this.readonly = !this.readonly;
-    },
   },
 };
 </script>
 
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";
-.task {
-  color: $task-text;
-  padding-left: 3rem;
-  width: 90%;
+.wrapper {
   .chbEmptyLabel {
     &:before {
       content: "";
@@ -100,29 +64,9 @@ export default {
       opacity: 0;
     }
   }
-
-  .text {
-    background-color: inherit;
-    border: none;
-    width: 80%;
-    &.active {
-      background-color: #ffff;
-    }
-  }
-
-  .edit {
-    background: $task-done;
-    border-radius: 0.3125rem;
-    padding: 0.5rem;
-    margin-left: 0.5rem;
-  }
-
   .done {
     appearance: none;
     &:checked {
-      + .text {
-        text-decoration: line-through;
-      }
       + .chbEmptyLabel {
         &:after {
           opacity: 1;

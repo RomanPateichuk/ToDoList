@@ -7,7 +7,7 @@
 <script>
 export default {
   components: {
-    AddTaskBtn: () => import("@/components/atoms/AddTaskBtn.vue"),
+    AddTaskBtn: () => import("@/components/atoms/AddTask.vue"),
   },
 };
 </script>
