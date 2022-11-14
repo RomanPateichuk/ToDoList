@@ -65,14 +65,14 @@ export default new Vuex.Store({
       state.tasks = JSON.parse(localStorage.getItem("tasks"));
     },
 
-    // SaveEditTask: (state, text, id) => {
-    //   state.tasks = state.tasks.map((item) => {
-    //     if (item.id == id) {
-    //       item.value = text;
-    //       return item;
-    //     } else return item;
-    //   });
-    // }
+    SaveEditTask: (state, param) => {
+      state.tasks = state.tasks.map((item) => {
+        if (item.id == param.id) {
+          item.value = param.value;
+          return item;
+        } else return item;
+      });
+    }
   },
   actions: {},
   modules: {},
