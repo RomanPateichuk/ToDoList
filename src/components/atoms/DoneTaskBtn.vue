@@ -70,7 +70,8 @@ export default {
 @import "@/assets/scss/main.scss";
 .task {
   color: $task-text;
-  padding: 0 1.4375rem 0 3rem;
+  padding-left: 3rem;
+  width: 90%;
   .chbEmptyLabel {
     &:before {
       content: "";

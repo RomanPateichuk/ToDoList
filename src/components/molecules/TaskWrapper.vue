@@ -34,9 +34,5 @@ export default {
   &:not(:first-child) {
     margin: 1.5625rem 0 0 0;
   }
-
-  :last-child {
-    margin-left: auto;
-  }
 }
 </style>
