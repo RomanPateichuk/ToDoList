@@ -1,7 +1,5 @@
 <template>
   <div :class="$style.task">
-    
-    
     <input
       :id="id"
       type="checkbox"
@@ -10,8 +8,16 @@
       v-model="isChecked"
     />
     <label :for="id" :class="$style.chbEmptyLabel"></label>
-    <input :class="{[$style.text]: true, [$style.active]: ActiveInput}" type="text" v-model="value" :readonly="readonly" /> 
-    <button :class="$style.edit" v-on:click="EditTask(id, value)">{{ editStatus }}</button>
+    <input
+      :class="{ [$style.text]: true, [$style.active]: ActiveInput }"
+      type="text"
+      v-model="value"
+      :readonly="readonly"
+      v-on:keyup.enter="EditTask(id, value)"
+    />
+    <button :class="$style.edit" v-on:click="EditTask(id, value)">
+      {{ editStatus }}
+    </button>
   </div>
 </template>
 
@@ -23,7 +29,7 @@ export default {
       readonly: true,
       editStatus: "edit",
       value: this.TaskValue,
-      ActiveInput: false
+      ActiveInput: false,
     };
   },
   props: {
@@ -43,7 +49,7 @@ export default {
       EventBus.$emit("CallCompleteTask", id);
     },
     EditTask: function (id, value) {
-      this.ActiveInput = !this.ActiveInput 
+      this.ActiveInput = !this.ActiveInput;
       if (this.editStatus === "edit") {
         this.editStatus = "save";
       } else {
@@ -63,12 +69,10 @@ export default {
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";
 .task {
-  
   color: $task-text;
   padding: 0 1.4375rem 0 3rem;
-    .chbEmptyLabel{
-    
-      &:before {
+  .chbEmptyLabel {
+    &:before {
       content: "";
       display: block;
       width: 1.5rem;
@@ -93,45 +97,37 @@ export default {
       top: 0.9375rem;
       left: 1.75rem;
       opacity: 0;
-
     }
+  }
 
+  .text {
+    background-color: inherit;
+    border: none;
+    width: 80%;
+    &.active {
+      background-color: #ffff;
     }
+  }
 
-    .text{
-      background-color: inherit;
-      border: none;
-      width: 80%;
-      &.active{
-        background-color:#ffff;
-        
-      }
-    }
+  .edit {
+    background: $task-done;
+    border-radius: 0.3125rem;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+  }
 
-    .edit{
-      background: $task-done;
-      border-radius: 0.3125rem;
-      padding: 0.5rem;
-      margin-left: 0.5rem
-    }
- 
   .done {
     appearance: none;
     &:checked {
-    + .text {
-      text-decoration: line-through;
-    }
-    + .chbEmptyLabel{
-      &:after{
-        opacity: 1;
+      + .text {
+        text-decoration: line-through;
       }
-      
+      + .chbEmptyLabel {
+        &:after {
+          opacity: 1;
+        }
+      }
     }
   }
-}}
-  
-
-  
-
-
+}
 </style>

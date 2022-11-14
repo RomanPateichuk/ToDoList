@@ -72,7 +72,7 @@ export default new Vuex.Store({
           return item;
         } else return item;
       });
-    }
+    },
   },
   actions: {},
   modules: {},
