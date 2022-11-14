@@ -1,16 +1,18 @@
 <template>
-  <label :class="$style.task">
+  <div :class="$style.task">
+    
+    
     <input
+      :id="id"
       type="checkbox"
       :class="$style.done"
       v-on:click="CompleteTask(id)"
       v-model="isChecked"
     />
-
-    <input type="text" v-model="value" :readonly="readonly" /> 
-    <!-- <span :class="$style.text">{{ TaskValue }}</span> -->
-    <button v-on:click="EditTask(id, value)">{{ editStatus }}</button>
-  </label>
+    <label :for="id" :class="$style.chbEmptyLabel"></label>
+    <input :class="{[$style.text]: true, [$style.active]: ActiveInput}" type="text" v-model="value" :readonly="readonly" /> 
+    <button :class="$style.edit" v-on:click="EditTask(id, value)">{{ editStatus }}</button>
+  </div>
 </template>
 
 <script>
@@ -21,6 +23,7 @@ export default {
       readonly: true,
       editStatus: "edit",
       value: this.TaskValue,
+      ActiveInput: false
     };
   },
   props: {
@@ -40,6 +43,7 @@ export default {
       EventBus.$emit("CallCompleteTask", id);
     },
     EditTask: function (id, value) {
+      this.ActiveInput = !this.ActiveInput 
       if (this.editStatus === "edit") {
         this.editStatus = "save";
       } else {
@@ -58,46 +62,76 @@ export default {
 
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";
-// .task {
-//   color: $task-text;
-//   padding: 0 1.4375rem 0 3rem;
-//   .text {
-//     &:before {
-//       content: "";
-//       display: block;
-//       width: 1.5rem;
-//       height: 1.5rem;
-//       background: $task-done;
-//       border-radius: 0.3125rem;
-//       position: absolute;
-//       top: 0.8125rem;
-//       left: 1.25rem;
-//     }
-//     &:after {
-//       content: "";
-//       display: block;
-//       width: 0.589375rem;
-//       height: 0.856875rem;
-//       border: 1px solid $main;
-//       border-left: none;
-//       border-top: none;
-//       position: absolute;
-//       transform: rotate(45deg);
-//       top: 0.9375rem;
-//       left: 1.75rem;
-//       opacity: 0;
-//     }
-//   }
-//   .done {
-//     appearance: none;
-//   }
-//   .done:checked {
-//     + .text {
-//       text-decoration: line-through;
-//       &:after {
-//         opacity: 1;
-//       }
-//     }
-//   }
-// }
+.task {
+  
+  color: $task-text;
+  padding: 0 1.4375rem 0 3rem;
+    .chbEmptyLabel{
+    
+      &:before {
+      content: "";
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+      background: $task-done;
+      border-radius: 0.3125rem;
+      position: absolute;
+      top: 0.8125rem;
+      left: 1.25rem;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      width: 0.589375rem;
+      height: 0.856875rem;
+      border: 1px solid $main;
+      border-left: none;
+      border-top: none;
+      position: absolute;
+      transform: rotate(45deg);
+      top: 0.9375rem;
+      left: 1.75rem;
+      opacity: 0;
+
+    }
+
+    }
+
+    .text{
+      background-color: inherit;
+      border: none;
+      width: 80%;
+      &.active{
+        background-color:#ffff;
+        
+      }
+    }
+
+    .edit{
+      background: $task-done;
+      border-radius: 0.3125rem;
+      padding: 0.5rem;
+      margin-left: 0.5rem
+    }
+ 
+  .done {
+    appearance: none;
+    &:checked {
+    + .text {
+      text-decoration: line-through;
+    }
+    + .chbEmptyLabel{
+      &:after{
+        opacity: 1;
+      }
+      
+    }
+  }
+}}
+  
+
+  
+
+
 </style>
