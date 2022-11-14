@@ -3,7 +3,7 @@
     ><input
       type="radio"
       name="radio-footer"
-      v-on:click="CallSetFilter(FooterBtnValue)"
+      v-on:click="Filter(FooterBtnValue)"
     /><span :class="$style.radio">{{ FooterBtnValue }}</span></label
   >
 </template>
@@ -18,8 +18,8 @@ export default {
     },
   },
   methods: {
-    CallSetFilter: function (FooterBtnValue) {
-      EventBus.$emit("SetFilter", FooterBtnValue);
+    Filter: function (FooterBtnValue) {
+      EventBus.$emit("CallSetFilter", FooterBtnValue);
     },
   },
 };

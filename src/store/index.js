@@ -4,7 +4,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
-    tasks_active: [
+    tasks: [
       { id: "1", value: "Task 1", checked: false },
       { id: "2", value: "Task 2", checked: false },
       { id: "3", value: "Task 3", checked: false },
@@ -18,12 +18,12 @@ export default new Vuex.Store({
   },
 
   getters: {
-    get_tasks_active: (state) => {
-      return state.tasks_active;
+    getTasks: (state) => {
+      return state.tasks;
     },
 
     getDoneCount: (state) => {
-      return state.tasks_active.reduce(
+      return state.tasks.reduce(
         (prev, el) => (el.checked == true ? prev + 1 : prev),
         0
       );
@@ -31,25 +31,25 @@ export default new Vuex.Store({
 
     getFilter: (state) => {
       if (state.filter == "All") {
-        return state.tasks_active;
+        return state.tasks;
       } else if (state.filter == "Active") {
-        return state.tasks_active.filter((item) => item.checked == false);
+        return state.tasks.filter((item) => item.checked == false);
       } else if (state.filter == "Completed") {
-        return state.tasks_active.filter((item) => item.checked == true);
+        return state.tasks.filter((item) => item.checked == true);
       }
     },
   },
   mutations: {
     DeleteTask: (state, id) => {
-      state.tasks_active = state.tasks_active.filter((task) => task.id != id);
+      state.tasks = state.tasks.filter((task) => task.id != id);
     },
 
     AddTask: (state, task) => {
-      state.tasks_active = state.tasks_active.concat(task);
+      state.tasks = state.tasks.concat(task);
     },
 
     CompleteTask: (state, id) => {
-      state.tasks_active = state.tasks_active.map((item) => {
+      state.tasks = state.tasks.map((item) => {
         if (item.id === id) {
           item.checked = !item.checked;
           return item;
@@ -57,16 +57,16 @@ export default new Vuex.Store({
       });
     },
 
-    setFilter: (state, FooterBtnValue) => {
+    SetFilter: (state, FooterBtnValue) => {
       state.filter = FooterBtnValue;
     },
 
     UpdateTasks: (state) => {
-      state.tasks_active = JSON.parse(localStorage.getItem("tasks"));
+      state.tasks = JSON.parse(localStorage.getItem("tasks"));
     },
 
     // SaveEditTask: (state, text, id) => {
-    //   state.tasks_active = state.tasks_active.map((item) => {
+    //   state.tasks = state.tasks.map((item) => {
     //     if (item.id == id) {
     //       item.value = text;
     //       return item;

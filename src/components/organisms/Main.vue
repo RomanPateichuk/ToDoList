@@ -8,7 +8,7 @@
         :isChecked="item.checked"
         :TaskValue="item.value"
       />
-      <div v-if="get_tasks_active == 0">Новых задач нет</div>
+      <div v-if="getTasks == 0">Новых задач нет</div>
       <AddTask />
     </div>
   </main>
@@ -19,16 +19,16 @@ import EventBus from "../../event-bus";
 import { mapGetters } from "vuex";
 export default {
   mounted() {
-    EventBus.$on("SetFilter", (FooterBtnValue) => {
-      this.SetFilter(FooterBtnValue);
+    EventBus.$on("CallSetFilter", (FooterBtnValue) => {
+      this.$store.commit("SetFilter", FooterBtnValue);
     });
 
     EventBus.$on("CallDeleteTask", (id) => {
-      this.DeleteTask(id);
+      this.$store.commit("DeleteTask", id);
     });
 
     EventBus.$on("CallCompleteTask", (id) => {
-      this.CompleteTask(id);
+      this.$store.commit("CompleteTask", id);
     });
 
     if (localStorage.tasks) {
@@ -39,7 +39,7 @@ export default {
     tasks: function () {
       localStorage.setItem(
         "tasks",
-        JSON.stringify(this.$store.getters.get_tasks_active)
+        JSON.stringify(this.$store.getters.getTasks)
       );
     },
   },
@@ -48,26 +48,14 @@ export default {
     AddTask: () => import("@/components/molecules/AddTaskWrapper.vue"),
   },
   computed: {
-    ...mapGetters(["getFilter", "get_tasks_active"]),
+    ...mapGetters(["getFilter", "getTasks"]),
 
     tasks() {
-      return this.$store.getters.get_tasks_active;
+      return this.$store.getters.getTasks;
     },
   },
 
-  methods: {
-    SetFilter: function (FooterBtnValue) {
-      this.$store.commit("setFilter", FooterBtnValue);
-    },
-
-    DeleteTask: function (id) {
-      this.$store.commit("DeleteTask", id);
-    },
-
-    CompleteTask: function (id) {
-      this.$store.commit("CompleteTask", id);
-    },
-  },
+  methods: {},
 };
 </script>
 

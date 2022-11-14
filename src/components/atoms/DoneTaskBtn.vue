@@ -18,10 +18,9 @@ import EventBus from "../../event-bus";
 export default {
   data() {
     return {
-      checked: false,
-      readonly: true,
-      editStatus: "edit",
-      value: this.TaskValue,
+      // readonly: true,
+      // editStatus: "edit",
+      // value: this.TaskValue,
     };
   },
   props: {

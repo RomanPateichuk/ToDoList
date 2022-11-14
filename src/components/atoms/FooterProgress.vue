@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.progress">
-    {{ getDoneCount }}/{{ get_tasks_active.length }} left
+    {{ getDoneCount }}/{{ getTasks.length }} left
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(["get_tasks_active", "getDoneCount"]),
+    ...mapGetters(["getTasks", "getDoneCount"]),
   },
 };
 </script>
