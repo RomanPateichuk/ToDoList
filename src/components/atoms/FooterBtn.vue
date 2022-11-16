@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import EventBus from "../../event-bus";
 export default {
   props: {
     FooterBtnValue: {
@@ -19,7 +18,7 @@ export default {
   },
   methods: {
     Filter: function (FooterBtnValue) {
-      EventBus.$emit("CallSetFilter", FooterBtnValue);
+      this.$store.commit("setFilter", FooterBtnValue);
     },
   },
 };

@@ -4,30 +4,27 @@
       :id="id"
       type="checkbox"
       :class="$style.done"
-      v-on:click="CompleteTask(id)"
-      v-model="isChecked"
+      v-on:click="completeTask(id)"
+      :checked="getCheckedValue(id)"
     />
     <label :for="id" :class="$style.chbEmptyLabel"></label>
   </div>
 </template>
 
 <script>
-import EventBus from "../../event-bus";
+import { mapGetters } from "vuex";
 export default {
-  data() {
-    return {};
+  computed: {
+    ...mapGetters(["getCheckedValue"]),
   },
   props: {
-    isChecked: {
-      type: Boolean,
-    },
     id: {
       type: String,
     },
   },
   methods: {
-    CompleteTask: function (id) {
-      EventBus.$emit("CallCompleteTask", id);
+    completeTask: function (id) {
+      this.$store.commit("completeTask", id);
     },
   },
 };

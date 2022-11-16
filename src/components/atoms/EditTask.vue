@@ -1,11 +1,11 @@
 <template>
   <div :class="$style.task">
     <input
-      :class="{
-        [$style.text]: true,
-        [$style.active]: ActiveInput,
-        [$style.unactive]: isChecked,
-      }"
+      :class="[
+        $style.text,
+        { [$style.active]: OnActiveInput },
+        { [$style.unactive]: getCheckedValue(id) },
+      ]"
       type="text"
       v-model="value"
       :readonly="readonly"
@@ -18,13 +18,17 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+  computed: {
+    ...mapGetters(["getCheckedValue"]),
+  },
   data() {
     return {
       readonly: true,
       editStatus: "edit",
       value: this.TaskValue,
-      ActiveInput: false,
+      OnActiveInput: false,
     };
   },
   props: {
@@ -35,19 +39,16 @@ export default {
     id: {
       type: String,
     },
-    isChecked: {
-      type: Boolean,
-    },
   },
   methods: {
     EditTask: function (id, value) {
-      this.ActiveInput = !this.ActiveInput;
+      this.OnActiveInput = !this.OnActiveInput;
       if (this.editStatus === "edit") {
         this.editStatus = "save";
       } else {
         this.editStatus = "edit";
         this.$store.commit({
-          type: "SaveEditTask",
+          type: "saveEditTask",
           id: id,
           value: value,
         });

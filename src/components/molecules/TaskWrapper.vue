@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.task">
-    <DoneTask :isChecked="isChecked" :id="id" />
-    <EditTask :isChecked="isChecked" :TaskValue="TaskValue" :id="id" />
+    <DoneTask :id="id" />
+    <EditTask :TaskValue="TaskValue" :id="id" />
     <RemoveTask :id="id" />
   </div>
 </template>
@@ -17,9 +17,6 @@ export default {
     TaskValue: {
       type: String,
       default: "",
-    },
-    isChecked: {
-      type: Boolean,
     },
     id: {
       type: String,

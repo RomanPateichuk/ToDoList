@@ -38,17 +38,21 @@ export default new Vuex.Store({
         return state.tasks.filter((item) => item.checked == true);
       }
     },
+
+    getCheckedValue: (state) => (id) => {
+      return state.tasks.filter((item) => item.id == id)[0].checked;
+    },
   },
   mutations: {
-    DeleteTask: (state, id) => {
+    deleteTask: (state, id) => {
       state.tasks = state.tasks.filter((task) => task.id != id);
     },
 
-    AddTask: (state, task) => {
+    addTask: (state, task) => {
       state.tasks = state.tasks.concat(task);
     },
 
-    CompleteTask: (state, id) => {
+    completeTask: (state, id) => {
       state.tasks = state.tasks.map((item) => {
         if (item.id === id) {
           item.checked = !item.checked;
@@ -57,17 +61,17 @@ export default new Vuex.Store({
       });
     },
 
-    SetFilter: (state, FooterBtnValue) => {
+    setFilter: (state, FooterBtnValue) => {
       state.filter = FooterBtnValue;
     },
 
-    UpdateTasks: (state) => {
+    updateTasks: (state) => {
       state.tasks = JSON.parse(localStorage.getItem("tasks"));
     },
 
-    SaveEditTask: (state, param) => {
+    saveEditTask: (state, param) => {
       state.tasks = state.tasks.map((item) => {
-        if (item.id == param.id) {
+        if (item.id === param.id) {
           item.value = param.value;
           return item;
         } else return item;

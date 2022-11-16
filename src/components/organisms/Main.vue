@@ -5,7 +5,6 @@
         v-for="(item, index) in getFilter"
         :id="item.id"
         :key="index"
-        :isChecked="item.checked"
         :TaskValue="item.value"
       />
       <div v-if="getTasks == 0">Новых задач нет</div>
@@ -15,24 +14,11 @@
 </template>
 
 <script>
-import EventBus from "../../event-bus";
 import { mapGetters } from "vuex";
 export default {
   mounted() {
-    EventBus.$on("CallSetFilter", (FooterBtnValue) => {
-      this.$store.commit("SetFilter", FooterBtnValue);
-    });
-
-    EventBus.$on("CallDeleteTask", (id) => {
-      this.$store.commit("DeleteTask", id);
-    });
-
-    EventBus.$on("CallCompleteTask", (id) => {
-      this.$store.commit("CompleteTask", id);
-    });
-
     if (localStorage.tasks) {
-      this.$store.commit("UpdateTasks");
+      this.$store.commit("updateTasks");
     }
   },
   watch: {
@@ -45,7 +31,7 @@ export default {
   },
   components: {
     Task: () => import("@/components/molecules/TaskWrapper.vue"),
-    AddTask: () => import("@/components/molecules/AddTaskWrapper.vue"),
+    AddTask: () => import("@/components/atoms/AddTask.vue"),
   },
   computed: {
     ...mapGetters(["getFilter", "getTasks"]),
