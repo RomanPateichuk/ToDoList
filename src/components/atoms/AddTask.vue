@@ -5,7 +5,7 @@
       :class="$style.add"
       placeholder="Add a new task"
       v-model="NewTaskText"
-      v-on:keyup.enter="submitNewTask"
+      v-on:keydown.enter="submitNewTask"
     />
   </div>
 </template>
