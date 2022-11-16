@@ -1,16 +1,30 @@
 <template>
-  <label :class="$style.task">
-    <input type="checkbox" :class="$style.done" />
-    <span :class="$style.text">{{ TaskValue }}</span>
-  </label>
+  <div :class="$style.wrapper">
+    <input
+      :id="id"
+      type="checkbox"
+      :class="$style.done"
+      v-on:click="completeTask(id)"
+      :checked="getCheckedValue(id)"
+    />
+    <label :for="id" :class="$style.chbEmptyLabel"></label>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+  computed: {
+    ...mapGetters(["getCheckedValue"]),
+  },
   props: {
-    TaskValue: {
+    id: {
       type: String,
-      default: "",
+    },
+  },
+  methods: {
+    completeTask: function (id) {
+      this.$store.commit("completeTask", id);
     },
   },
 };
@@ -18,12 +32,8 @@ export default {
 
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";
-
-.task {
-  color: $task-text;
-  padding: 0 1.4375rem 0 3rem;
-
-  .text {
+.wrapper {
+  .chbEmptyLabel {
     &:before {
       content: "";
       display: block;
@@ -51,16 +61,13 @@ export default {
       opacity: 0;
     }
   }
-
   .done {
     appearance: none;
-  }
-
-  .done:checked {
-    + .text {
-      text-decoration: line-through;
-      &:after {
-        opacity: 1;
+    &:checked {
+      + .chbEmptyLabel {
+        &:after {
+          opacity: 1;
+        }
       }
     }
   }

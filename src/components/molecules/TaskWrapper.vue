@@ -1,20 +1,25 @@
 <template>
   <div :class="$style.task">
-    <DoneTaskBtn :TaskValue="TaskValue" />
-    <RemoveTaskBtn />
+    <DoneTask :id="id" />
+    <EditTask :TaskValue="TaskValue" :id="id" />
+    <RemoveTask :id="id" />
   </div>
 </template>
 
 <script>
 export default {
   components: {
-    RemoveTaskBtn: () => import("@/components/molecules/RemoveTaskBtn.vue"),
-    DoneTaskBtn: () => import("@/components/molecules/DoneTaskBtn.vue"),
+    RemoveTask: () => import("@/components/atoms/RemoveTask.vue"),
+    EditTask: () => import("@/components/atoms/EditTask.vue"),
+    DoneTask: () => import("@/components/atoms/DoneTask.vue"),
   },
   props: {
     TaskValue: {
       type: String,
       default: "",
+    },
+    id: {
+      type: String,
     },
   },
 };
@@ -27,10 +32,6 @@ export default {
   @include Task;
   &:not(:first-child) {
     margin: 1.5625rem 0 0 0;
-  }
-
-  :last-child {
-    margin-left: auto;
   }
 }
 </style>

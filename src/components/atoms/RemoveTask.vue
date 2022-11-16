@@ -1,6 +1,20 @@
 <template>
-  <button :class="$style.remove">&times;</button>
+  <button v-on:click="deleteTask(id)" :class="$style.remove">&times;</button>
 </template>
+<script>
+export default {
+  props: {
+    id: {
+      type: String,
+    },
+  },
+  methods: {
+    deleteTask: function (id) {
+      this.$store.commit("deleteTask", id);
+    },
+  },
+};
+</script>
 
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";

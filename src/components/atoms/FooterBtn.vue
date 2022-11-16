@@ -1,9 +1,10 @@
 <template>
   <label :class="$style.btns_wrapper"
-    ><input type="radio" name="radio-footer" /><span
-      :class="$style.radio"
-      >{{ FooterBtnValue }}</span
-    ></label
+    ><input
+      type="radio"
+      name="radio-footer"
+      v-on:click="Filter(FooterBtnValue)"
+    /><span :class="$style.radio">{{ FooterBtnValue }}</span></label
   >
 </template>
 
@@ -15,6 +16,11 @@ export default {
       value: "",
     },
   },
+  methods: {
+    Filter: function (FooterBtnValue) {
+      this.$store.commit("setFilter", FooterBtnValue);
+    },
+  },
 };
 </script>
 
@@ -24,7 +30,6 @@ export default {
   input[type="radio"] {
     appearance: none;
   }
-
   input[type="radio"]:checked {
     + .radio {
       border: 1px solid $footer-border-btn;
@@ -32,7 +37,6 @@ export default {
       box-sizing: border-box;
     }
   }
-
   .radio {
     border: 1px solid transparent;
     box-sizing: border-box;

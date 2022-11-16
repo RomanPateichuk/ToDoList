@@ -1,42 +1,59 @@
 <template>
   <main :class="$style.main">
     <div :class="$style.tasks">
-      <Task v-for="(task, id) in tasks" :key="id" :TaskValue="task.value" />
+      <Task
+        v-for="(item, index) in getFilter"
+        :id="item.id"
+        :key="index"
+        :TaskValue="item.value"
+      />
+      <div v-if="getTasks == 0">Новых задач нет</div>
       <AddTask />
     </div>
   </main>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+  mounted() {
+    if (localStorage.tasks) {
+      this.$store.commit("updateTasks");
+    }
+  },
+  watch: {
+    tasks: function () {
+      localStorage.setItem(
+        "tasks",
+        JSON.stringify(this.$store.getters.getTasks)
+      );
+    },
+  },
   components: {
-    Task: () => import("@/components/atoms/TaskWrapper.vue"),
-    AddTask: () => import("@/components/atoms/AddTaskWrapper.vue"),
+    Task: () => import("@/components/molecules/TaskWrapper.vue"),
+    AddTask: () => import("@/components/atoms/AddTask.vue"),
+  },
+  computed: {
+    ...mapGetters(["getFilter", "getTasks"]),
+
+    tasks() {
+      return this.$store.getters.getTasks;
+    },
   },
 
-  data() {
-    return {
-      tasks: [
-        { id: 1, value: "Task 1" },
-        { id: 2, value: "Task 2" },
-        { id: 3, value: "Task 3" },
-        { id: 3, value: "Task 4" },
-      ],
-    };
-  },
+  methods: {},
 };
 </script>
 
 <style lang="scss" module>
 @import "@/assets/scss/main.scss";
-
 .main {
   display: flex;
   padding: 0 1.875rem 0 1.875rem;
   flex-direction: column;
   @include MediaMainMobile;
 
-  .tasks{
+  .tasks {
     margin: 1.875rem 0 0 0;
   }
 }

@@ -42,7 +42,8 @@ export default {
 
   .main {
     background-color: $main;
-    max-width: 33.75rem;
+    max-width: 40rem;
+    min-width: 31rem;
     margin: 0 auto;
     z-index: 2;
     position: relative;
