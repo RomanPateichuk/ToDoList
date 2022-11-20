@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { uid } from "uid";
 Vue.use(Vuex);
 
 export const state = {
@@ -48,8 +49,13 @@ export const mutations = {
     state.tasks = state.tasks.filter((task) => task.id != id);
   },
 
-  addTask: (state, task) => {
-    state.tasks = state.tasks.concat(task);
+  addTask: (state, value) => {
+    let obj = {
+      id: uid(),
+      value: value,
+      checked: false,
+    };
+    state.tasks = state.tasks.concat(obj);
   },
 
   completeTask: (state, id) => {

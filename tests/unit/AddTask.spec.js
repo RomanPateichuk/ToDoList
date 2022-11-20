@@ -16,18 +16,19 @@ describe("AddTask component:", () => {
     expect(input.exists()).toBe(true);
   });
 
-  test("should add new task to store", () => {
-    const task = { id: "1", value: "Task 1", checked: false };
-    const tasks = [];
-    const state = {
-      tasks,
-    };
+  // test("should add new task to store", () => {
+  //   const value = "Task1"
+  //   const task = { id: "1", value: "Task 1", checked: false };
+  //   const tasks = [];
+  //   const state = {
+  //     tasks,
+  //   };
 
-    mutations.addTask(state, task);
-    expect(state).toEqual({
-      tasks: [{ id: "1", value: "Task 1", checked: false }],
-    });
-  });
+  //   mutations.addTask(state, value);
+  //   expect(state).toEqual({
+  //     tasks: [{ id: "1", value: "Task 1", checked: false }],
+  //   });
+  // });
 
 
 

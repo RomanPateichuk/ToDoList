@@ -5,12 +5,11 @@
       :class="$style.add"
       placeholder="Add a new task"
       v-model="NewTaskText"
-      v-on:keydown.enter="submitNewTask"
+      @keydown.enter="addNewTask"
     />
   </div>
 </template>
 <script>
-import { uid } from "uid";
 export default {
   data: function () {
     return {
@@ -19,13 +18,8 @@ export default {
   },
 
   methods: {
-    submitNewTask: function () {
-      let obj = {
-        id: uid(),
-        value: this.NewTaskText,
-        checked: false,
-      };
-      this.$store.commit("addTask", obj);
+    addNewTask: function () {
+      this.$emit("callAddTask", this.NewTaskText);
       this.NewTaskText = "";
     },
   },

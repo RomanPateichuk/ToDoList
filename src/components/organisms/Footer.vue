@@ -9,7 +9,7 @@
 export default {
   components: {
     FooterBtnWrapper: () =>
-      import("@/components/molecules/FooterBtnWrapper.vue"),
+      import("@/components/molecules/FooterBtnsWrapper.vue"),
     FooterProgress: () => import("@/components/atoms/FooterProgress.vue"),
   },
 };

@@ -4,6 +4,7 @@
       v-for="(btn, index) in btns"
       :key="index"
       :FooterBtnValue="btn"
+      @callFilter="callMuttationSetFilter(btn)"
     />
   </div>
 </template>
@@ -16,6 +17,11 @@ export default {
     return {
       btns: ["All", "Active", "Completed"],
     };
+  },
+  methods: {
+    callMuttationSetFilter: function (FooterBtnValue) {
+      this.$store.commit("setFilter", FooterBtnValue);
+    },
   },
 };
 </script>

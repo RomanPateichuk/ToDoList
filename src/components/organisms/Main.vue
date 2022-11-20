@@ -8,7 +8,7 @@
         :TaskValue="item.value"
       />
       <div v-if="getTasks == 0">Новых задач нет</div>
-      <AddTask />
+      <AddTask @callAddTask="callMutationAdd" />
     </div>
   </main>
 </template>
@@ -41,7 +41,12 @@ export default {
     },
   },
 
-  methods: {},
+  methods: {
+    callMutationAdd: function (value) {
+      this.$store.commit("addTask", value);
+      console.log(value);
+    },
+  },
 };
 </script>
 

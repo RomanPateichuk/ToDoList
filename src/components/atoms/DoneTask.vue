@@ -4,7 +4,7 @@
       :id="id"
       type="checkbox"
       :class="$style.done"
-      v-on:click="completeTask(id)"
+      @click="callCompleteTask"
       :checked="getCheckedValue(id)"
     />
     <label :for="id" :class="$style.chbEmptyLabel"></label>
@@ -23,8 +23,8 @@ export default {
     },
   },
   methods: {
-    completeTask: function (id) {
-      this.$store.commit("completeTask", id);
+    callCompleteTask: function () {
+      this.$emit("completeTask");
     },
   },
 };

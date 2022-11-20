@@ -1,10 +1,9 @@
 <template>
   <label :class="$style.btns_wrapper"
-    ><input
-      type="radio"
-      name="radio-footer"
-      v-on:click="Filter(FooterBtnValue)"
-    /><span :class="$style.radio">{{ FooterBtnValue }}</span></label
+    ><input type="radio" name="radio-footer" @click="Filter" /><span
+      :class="$style.radio"
+      >{{ FooterBtnValue }}</span
+    ></label
   >
 </template>
 
@@ -17,8 +16,8 @@ export default {
     },
   },
   methods: {
-    Filter: function (FooterBtnValue) {
-      this.$store.commit("setFilter", FooterBtnValue);
+    Filter: function () {
+      this.$emit("callFilter");
     },
   },
 };

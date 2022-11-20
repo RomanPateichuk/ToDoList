@@ -49,10 +49,7 @@ export default {
         this.editStatus = "save";
       } else {
         this.editStatus = "edit";
-        this.$store.commit("saveEditTask", {
-          id: this.id,
-          value: this.newTaskValue,
-        });
+        this.$emit("callEditTask", this.newTaskValue);
         this.newTaskValue = "";
       }
 
