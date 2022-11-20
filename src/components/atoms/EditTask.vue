@@ -3,15 +3,16 @@
     <input
       :class="[
         $style.text,
-        { [$style.active]: OnActiveInput },
+        { [$style.active]: onActiveInput },
         { [$style.unactive]: getCheckedValue(id) },
       ]"
-      type="text"
-      v-model="value"
+      ref="taskInput"
       :readonly="readonly"
-      v-on:keyup.enter="EditTask(id, value)"
+      @keyup.enter="editTask"
+      v-model="newTaskValue"
+      :placeholder="TaskValue"
     />
-    <button :class="$style.edit" v-on:click="EditTask(id, value)">
+    <button :class="$style.edit" v-on:click="editTask()">
       {{ editStatus }}
     </button>
   </div>
@@ -27,8 +28,8 @@ export default {
     return {
       readonly: true,
       editStatus: "edit",
-      value: this.TaskValue,
-      OnActiveInput: false,
+      onActiveInput: false,
+      newTaskValue: "",
     };
   },
   props: {
@@ -41,18 +42,20 @@ export default {
     },
   },
   methods: {
-    EditTask: function (id, value) {
+    editTask: function () {
       this.OnActiveInput = !this.OnActiveInput;
+      this.$refs.taskInput.focus();
       if (this.editStatus === "edit") {
         this.editStatus = "save";
       } else {
         this.editStatus = "edit";
-        this.$store.commit({
-          type: "saveEditTask",
-          id: id,
-          value: value,
+        this.$store.commit("saveEditTask", {
+          id: this.id,
+          value: this.newTaskValue,
         });
+        this.newTaskValue = "";
       }
+
       this.readonly = !this.readonly;
     },
   },
@@ -65,20 +68,22 @@ export default {
   color: $task-text;
   padding-left: 2rem;
   width: 90%;
-
   .text {
     background-color: inherit;
     border: none;
     width: 80%;
+    padding: 0.4rem;
     &.active {
       background-color: #ffff;
     }
-
     &.unactive {
       text-decoration: line-through;
     }
+    &::placeholder {
+      color: rgb(43, 57, 61);
+      font-weight: 600;
+    }
   }
-
   .edit {
     background: $task-done;
     border-radius: 0.3125rem;
