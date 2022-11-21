@@ -31,18 +31,23 @@ localVue.use(Vuex)
         getCheckedValue: () => jest.fn(),
       }
   });
-  const checkbox = wrapper.find("label")
+  const checkbox = wrapper.find("input")
   const callCompleteTask = jest.spyOn(wrapper.vm, 'callCompleteTask');
   
+  test("Должен вызывать 'completeTask' при клике", async() => {
+    await checkbox.trigger("click")
+    expect(wrapper.emitted().completeTask).toBeTruthy()
+  })
 
   test("Должен вызывать 'callCompleteTask' при клике", async() => {
-    //await checkbox.trigger("click")
-    
-    wrapper.vm.callCompleteTask();
+    await checkbox.trigger("click")
+    wrapper.vm.callCompleteTask(); //не хочет вызываться через триггер
     expect(callCompleteTask).toHaveBeenCalled()
+
+    //console.log(wrapper.emitted().callCompleteTask)
+    //expect(wrapper.emitted().callCompleteTask).toBeCalled()
     
     // expect(callCompleteTask).toHaveBeenCalledTimes(1);
-
   })
   
 });

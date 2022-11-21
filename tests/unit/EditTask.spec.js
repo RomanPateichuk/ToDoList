@@ -1,9 +1,14 @@
-// import { shallowMount } from "@vue/test-utils";
-//import EditTaskComponent from "../../src/components/atoms/EditTask.vue";
-//import { mutations }  from "../../src/store/index.js"
+import { mount } from "@vue/test-utils";
+import EditTaskComponent from "../../src/components/atoms/EditTask.vue";
 
-describe("DeleteTask component:", () => {
-//const wrapper = shallowMount(EditTaskComponent)
+
+describe("Тестирование компонента EditTask:", () => {
+
+  const wrapper = mount(EditTaskComponent,{
+  computed: {
+    getCheckedValue: () => jest.fn(),
+  }
+})
 
 test("!!!!!!!!!!!!!!!!!!!!", () => {
 
