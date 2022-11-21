@@ -11,12 +11,12 @@
 </template>
 <script>
 export default {
+ 
   data: function () {
     return {
       NewTaskText: "",
     };
   },
-
   methods: {
     addNewTask: function () {
       this.$emit("callAddTask", this.NewTaskText);

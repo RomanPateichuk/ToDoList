@@ -1,97 +1,67 @@
-import { shallowMount, mount } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import AddTaskComponent from "../../src/components/atoms/AddTask.vue";
-import { mutations } from "../../src/store/index.js";
+import { getters, mutations } from "../../src/store/index.js";
 
-describe("AddTask component:", () => {
-  const wrapper = shallowMount(AddTaskComponent, {
-    data() {
-      return {
-        NewTaskText: '',
-      }
-    }
-  });
-  const input = wrapper.find("input")
 
-  test("should contains input", () => {
+describe("Тестирование компонента AddTask:", () => {
+  
+  
+ 
+  const wrapper = mount(AddTaskComponent, {
+    propsData: {
+      
+   }
+ });
+  const addNewTask = jest.spyOn(wrapper.vm, 'addNewTask');
+  const input = wrapper.find("input[type='text']")
+  
+
+  
+  
+  test("Должен содержать input с type='text'", () => {
     expect(input.exists()).toBe(true);
   });
 
-  // test("should add new task to store", () => {
-  //   const value = "Task1"
-  //   const task = { id: "1", value: "Task 1", checked: false };
-  //   const tasks = [];
-  //   const state = {
-  //     tasks,
-  //   };
-
-  //   mutations.addTask(state, value);
-  //   expect(state).toEqual({
-  //     tasks: [{ id: "1", value: "Task 1", checked: false }],
-  //   });
-  // });
+  
+  test("Должен вызывать обработчик 'callAddTask' с параметром при нажатии enter", async () => {
+    await input.setValue("новый таск")
+    await input.trigger("keydown.enter")
+    expect(wrapper.emitted().callAddTask).toBeTruthy()
+    expect(wrapper.emitted().callAddTask[0][0]).toBe("новый таск")
+  });
 
 
-
-  // test("should call submitNewTask when enter is pressed enter", async () => {
-  //   await wrapper.find("input").trigger("keydown.enter");
-  //   expect(wrapper.emitted("getInputValue")).toBeTruthy();
-  // })
-
-
-
-  // const clickHandler = jest.fn()
-  // const wrapper1 = mount(AddTaskComponent, {
-  //   propsData: { clickHandler }
-  // })
-  // wrapper1.find("input").trigger("keydown.enter") // вызывает метод напрямую
-  // expect(clickHandler.called).toBe(true)
-
-
-  // const wrapper1 = mount(AddTaskComponent);
-  // wrapper1.vm.$emit('submitNewTask')
-  // expect(wrapper1.emitted().submitNewTask).toBeTruthy()
-
-
-  // expect(input.attributes().placeholder).toBe("Add a new task")
-  // input.setValue("Закончить писать тесты")
-  //expect(input.element.value).toBe('Закончить писать тесты')
-
-
-
-  /* через triger */
-  //const enterTask = jest.fn()
-  //await wrapper.find("input").trigger("click");    //работает и вызывает метод submitNewTask
-
-  //expect(wrapper.emitted().submitNewTask).toBeCalled()
-
-  //expect(wrapper.emitted().AddTask).toBeCalled()
-
-  //expect(wrapper.emitted()).toHaveProperty('submitNewTask')
-
-
-  // wrapper.vm.$emit('submitNewTask')
-  // wrapper.vm.$emit('submitNewTask', 123)
-  // await wrapper.vm.$nextTick()
-  // expect(wrapper.emitted().submitNewTask).toBeTruthy()
-  // expect(wrapper.emitted().submitNewTask.length).toBe(2)
-  // expect(wrapper.emitted().submitNewTask[1]).toEqual([123])
-
-  // const callback = jest.fn();
-  // [1, 2, 3].forEach(callback);
-  // expect(callback.mock.calls).toHaveLength(3);
+  test("Должен вызывать метод 'addNewTask' при нажатии enter", async () => {
+    await input.trigger("keydown.enter")
+    expect(addNewTask).toHaveBeenCalled()
+    expect(addNewTask).toHaveBeenCalledTimes(2);
+  });
 
 
 
 
-  //exepct(wrapper.emitted().callback).toBeTruthy()
-  //expect(input.attributes().placeholder).toBe("")
-  // wrapper.vm.submitNewTask()
-  //wrapper.vm.submitNewTask()
-  //wrapper.trigger("enter");
-  //console.log("Порожденные события: ", wrapper.emitted())
-  //expect(wrapper.emitted().submitNewTask).toBeTruthy()
+  test("Должен очищать input после ввода", async () => {
+    await input.setValue("новый таск")
+    await input.trigger("keydown.enter")
+    expect(input.element.value).toBe("")
+  });
 
+  test("Должен добавлять новую задачу в store", () => {
+    const value = "Task 1"
+    const tasks = [];
+    const state = {
+      tasks,
+    };
 
+    mutations.addTask(state, value);
+    const id = getters.getTasks(state)[0].id;
+    expect(state).toEqual({
+      tasks: [{ id: id, value: "Task 1", checked: false }],
+    });
+
+    expect(state.tasks[0].value).toBe("Task 1")
+    expect(state.tasks.length).toBe(1)
+  });
 
 })
 
