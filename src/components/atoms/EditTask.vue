@@ -12,7 +12,7 @@
       v-model="newTaskValue"
       :placeholder="TaskValue"
     />
-    <button :class="$style.edit" v-on:click="editTask()">
+    <button :class="$style.edit" @click="editTask()">
       {{ editStatus }}
     </button>
   </div>
