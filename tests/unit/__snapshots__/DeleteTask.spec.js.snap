@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Тестирование компонента DeleteTask: соответствие снимку 1`] = `<button>×</button>`;

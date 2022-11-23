@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Тестирование компонента FooterProgress: соответствие снимку 1`] = `
+<div>
+  2/ left
+</div>
+`;

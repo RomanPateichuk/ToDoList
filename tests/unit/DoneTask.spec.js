@@ -23,9 +23,8 @@ describe("Тестирование компонента DoneTask:", () => {
     },
   });
   const checkbox = wrapper.find("input");
-  //const callCompleteTask = jest.spyOn(wrapper.vm, "callCompleteTask");
-
-  test("соответствие снимку", () => {
+ 
+ test("соответствие снимку", () => {
     expect(wrapper).toMatchSnapshot();
   });
 

@@ -20,7 +20,7 @@ describe("Тестирование компонента EditTask:", () => {
     store,
     localVue,
     computed: {
-      getCheckedValue: () => jest.fn(),
+     getCheckedValue: () => jest.fn(),
     },
   });
 
