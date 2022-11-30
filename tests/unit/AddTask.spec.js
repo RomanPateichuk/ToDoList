@@ -1,6 +1,5 @@
 import { mount } from "@vue/test-utils";
 import AddTaskComponent from "../../src/components/atoms/AddTask.vue";
-import { getters, mutations } from "../../src/store/index.js";
 
 describe("Тестирование компонента AddTask:", () => {
   const wrapper = mount(AddTaskComponent, {
@@ -36,5 +35,4 @@ describe("Тестирование компонента AddTask:", () => {
     await input.trigger("keydown.enter");
     expect(input.element.value).toBe("");
   });
-
 });

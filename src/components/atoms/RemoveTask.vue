@@ -1,11 +1,16 @@
 <template>
-  <button @click="removeTask" :class="$style.remove">&times;</button>
+  <button @click="removeTask(id)" :class="$style.remove">&times;</button>
 </template>
 <script>
 export default {
   methods: {
-    removeTask: function () {
-      this.$emit("callRemoveTask");
+    removeTask: function (id) {
+      this.$emit("callRemoveTask", id);
+    },
+  },
+  props: {
+    id: {
+      type: String,
     },
   },
 };

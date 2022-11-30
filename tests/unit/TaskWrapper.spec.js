@@ -1,48 +1,60 @@
-
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount, createLocalVue } from "@vue/test-utils";
 import TaskWrapper from "../../src/components/molecules/TaskWrapper.vue";
-import RemoveTask from "../../src/components/atoms/RemoveTask.vue";
 import DoneTask from "../../src/components/atoms/DoneTask.vue";
+import RemoveTask from "../../src/components/atoms/RemoveTask.vue";
+import EditTask from "../../src/components/atoms/EditTask.vue";
+import Vuex from "vuex";
 
+const localVue = createLocalVue();
+localVue.use(Vuex);
 
+const mutations = {
+  completeTask: jest.fn(),
+  deleteTask: jest.fn(),
+  saveEditTask: jest.fn(),
+};
+
+const getters = {
+  getCheckedValue: () => jest.fn(),
+};
+
+const store = new Vuex.Store({ mutations, getters });
 
 describe("Тестирование компонента TaskWrapper:", () => {
+  const wrapper = shallowMount(TaskWrapper, {
+    store,
+    localVue,
+  });
 
-  const wrapper =  shallowMount(TaskWrapper,{
-    computed: {
-      //getCheckedValue: () => jest.fn(),   // не могу добиться видимости геттеров компонентов внутри родителя
-    },
+  test("соответствие снимку", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
 
+  test("вызов события completeTask из дочернего компонента", () => {
+    expect(
+      wrapper.findComponent(DoneTask).vm.$emit("completeTask", "1")
+    ).toBeTruthy();
+  });
 
-   });
+  test("Вызов метода 'callRemoveTask' из дочернего компонента", () => {
+    expect(
+      wrapper.findComponent(RemoveTask).vm.$emit("callRemoveTask", "1")
+    ).toBeTruthy();
+  });
 
-   const callMuttationComplete = jest.spyOn(wrapper.vm, "callMuttationComplete");
-        
-   test("соответствие снимку", () => {
-       expect(wrapper).toMatchSnapshot();
-   })
+  test("Вызов мутации 'completeTask' c нагрузкой", () => {
+    expect(mutations.completeTask).toHaveBeenCalledWith({}, "1");
+  });
 
+  test("Вызов мутации 'deleteTask' с нагрузкой", () => {
+    expect(mutations.deleteTask).toHaveBeenCalledWith({}, "1");
+  });
 
-    test("вызов события completeTask из дочернего компонента", () => {
-    expect(wrapper.findComponent(DoneTask).vm.$emit('completeTask')).toBeTruthy()
-    })
-
-    test("вызов мутации callMuttationComplete c нагрузкой", () => {
-     //expect(mockStore.commit).toHaveBeenCalledWith("completeTask")
-      })
-
-
-    test("Вызов метода 'callRemoveTask' из дочернего компонента", () => {
-      expect(wrapper.findComponent(RemoveTask).vm.$emit('callRemoveTask')).toBeTruthy()  
-  })
-
-
-    test("Вызов метода 'callMuttationSetFilter'", () => {
-      //expect(callMuttationComplete).toHaveReturnedTimes(1);
-      expect(callMuttationComplete).toHaveBeenCalled();
-    })
-
- 
-   
-    
-})
+  test("Вызов мутации 'editTask' с нагрузкой", () => {
+    wrapper.findComponent(EditTask).vm.$emit("callEditTask", "value", "1");
+    expect(mutations.saveEditTask).toHaveBeenCalledWith(
+      {},
+      { id: "1", value: "value" }
+    );
+  });
+});

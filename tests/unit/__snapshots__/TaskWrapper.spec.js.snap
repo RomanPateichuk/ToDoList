@@ -2,7 +2,9 @@
 
 exports[`Тестирование компонента TaskWrapper: соответствие снимку 1`] = `
 <div>
-  <!---->
-  <!----> <button>×</button>
+  <div><input type="checkbox"> <label></label></div>
+  <div><input readonly="readonly" placeholder="" class=""> <button>
+      edit
+    </button></div> <button>×</button>
 </div>
 `;

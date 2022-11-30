@@ -1,12 +1,12 @@
 <template>
   <div :class="$style.task">
-    <DoneTask :id="id" @completeTask="callMuttationComplete(id)" />
+    <DoneTask :id="id" @completeTask="callMuttationComplete" />
     <EditTask
       :TaskValue="TaskValue"
       :id="id"
       @callEditTask="callMuttationEdit"
     />
-    <RemoveTask @callRemoveTask="callMuttationRemove" />
+    <RemoveTask :id="id" @callRemoveTask="callMuttationRemove" />
   </div>
 </template>
 
@@ -31,14 +31,14 @@ export default {
     callMuttationComplete: function (id) {
       this.$store.commit("completeTask", id);
     },
-    callMuttationEdit: function (value) {
+    callMuttationEdit: function (value, id) {
       this.$store.commit("saveEditTask", {
-        id: this.id,
+        id: id,
         value: value,
       });
     },
-    callMuttationRemove: function () {
-      this.$store.commit("deleteTask", this.id);
+    callMuttationRemove: function (id) {
+      this.$store.commit("deleteTask", id);
     },
   },
 };

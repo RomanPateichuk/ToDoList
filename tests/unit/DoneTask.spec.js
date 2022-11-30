@@ -1,7 +1,6 @@
 import Vuex from "vuex";
 import { mount, createLocalVue } from "@vue/test-utils";
 import DoneTaskComponent from "../../src/components/atoms/DoneTask.vue";
-import { mutations } from "../../src/store/index.js";
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
@@ -20,12 +19,11 @@ describe("Тестирование компонента DoneTask:", () => {
     localVue,
     computed: {
       getCheckedValue: () => jest.fn(),
-      
     },
   });
   const checkbox = wrapper.find("input");
- 
- test("соответствие снимку", () => {
+
+  test("соответствие снимку", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -33,5 +31,4 @@ describe("Тестирование компонента DoneTask:", () => {
     await checkbox.trigger("click");
     expect(wrapper.emitted().completeTask).toBeTruthy();
   });
-
 });

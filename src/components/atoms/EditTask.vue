@@ -12,7 +12,7 @@
       v-model="newTaskValue"
       :placeholder="TaskValue"
     />
-    <button :class="$style.edit" @click="editTask()">
+    <button :class="$style.edit" @click="editTask(id)">
       {{ editStatus }}
     </button>
   </div>
@@ -42,14 +42,14 @@ export default {
     },
   },
   methods: {
-    editTask: function () {
+    editTask: function (id) {
       this.OnActiveInput = !this.OnActiveInput;
       this.$refs.taskInput.focus();
       if (this.editStatus === "edit") {
         this.editStatus = "save";
       } else {
         this.editStatus = "edit";
-        this.$emit("callEditTask", this.newTaskValue);
+        this.$emit("callEditTask", this.newTaskValue, id);
         this.newTaskValue = "";
       }
 
