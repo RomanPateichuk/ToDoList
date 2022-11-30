@@ -14,9 +14,6 @@ describe("Тестирование компонента FooterBtn:", () => {
     test("соответствие снимку", () => {
       expect(wrapper).toMatchSnapshot();
     });
-  
-    expect(wrapper.isVueInstance()).toBe(true);
-    
     
     test("Проверка входных параметров", async () => {
       expect(wrapper.find("span").text()).toBe("ALL")

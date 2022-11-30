@@ -20,6 +20,7 @@ describe("Тестирование компонента DoneTask:", () => {
     localVue,
     computed: {
       getCheckedValue: () => jest.fn(),
+      
     },
   });
   const checkbox = wrapper.find("input");
@@ -33,11 +34,4 @@ describe("Тестирование компонента DoneTask:", () => {
     expect(wrapper.emitted().completeTask).toBeTruthy();
   });
 
-  test("Должен менять в store поле checked", async () => {
-    mutations.completeTask(store.state, "1");
-    expect(store.state.tasks).toEqual([
-      { id: "1", value: "Task 1", checked: true },
-      { id: "2", value: "Task 2", checked: false },
-    ]);
-  });
 });

@@ -6,7 +6,7 @@ describe("Тестирование компонента FooterProgress:", () => 
 const wrapper = mount(FooterProgress,{
     computed:{
         getDoneCount: ()=> 2,
-        getTasks: ()=>5
+        getTasks: ()=> [1,2]
     }
 });
 
@@ -16,7 +16,8 @@ test("соответствие снимку", () => {
 })
 
 test("Проверка работы геттеров", () => {
-    expect(wrapper.find("div").text()).toBe();
+   expect(wrapper.find("div").text()).toBe("2/2 left");
 })
+
 
 });

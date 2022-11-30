@@ -37,20 +37,4 @@ describe("Тестирование компонента AddTask:", () => {
     expect(input.element.value).toBe("");
   });
 
-  test("Должен добавлять новую задачу в store", () => {
-    const value = "Task 1";
-    const tasks = [];
-    const state = {
-      tasks,
-    };
-
-    mutations.addTask(state, value);
-    const id = getters.getTasks(state)[0].id;
-    expect(state).toEqual({
-      tasks: [{ id: id, value: "Task 1", checked: false }],
-    });
-
-    expect(state.tasks[0].value).toBe("Task 1");
-    expect(state.tasks.length).toBe(1);
-  });
 });
