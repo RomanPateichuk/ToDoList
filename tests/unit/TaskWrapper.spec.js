@@ -24,6 +24,10 @@ describe("Тестирование компонента TaskWrapper:", () => {
   const wrapper = shallowMount(TaskWrapper, {
     store,
     localVue,
+    propsData: {
+      TaskValue: "Task 1",
+      id: "1",
+    },
   });
 
   test("соответствие снимку", () => {
@@ -56,5 +60,11 @@ describe("Тестирование компонента TaskWrapper:", () => {
       {},
       { id: "1", value: "value" }
     );
+  });
+
+  test("Тестирование входных параметров", () => {
+    expect(
+      wrapper.findComponent(EditTask).findComponent("input").attributes().placeholder
+    ).toBe("Task 1");
   });
 });

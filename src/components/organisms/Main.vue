@@ -44,7 +44,6 @@ export default {
   methods: {
     callMutationAdd: function (value) {
       this.$store.commit("addTask", value);
-      console.log(value);
     },
   },
 };

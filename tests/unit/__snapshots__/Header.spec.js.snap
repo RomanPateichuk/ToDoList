@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Тестирование компонента Header: соответствие снимку 1`] = `
+<header>
+  <h1>to do list</h1>
+</header>
+`;

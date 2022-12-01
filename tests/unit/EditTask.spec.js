@@ -24,8 +24,8 @@ describe("Тестирование компонента EditTask:", () => {
     },
   });
 
-  const input = wrapper.find("input");
-  const button = wrapper.find("button");
+  const input = wrapper.findComponent("input");
+  const button = wrapper.findComponent("button");
 
   const editTask = jest.spyOn(wrapper.vm, "editTask");
   test("соответствие снимку", () => {

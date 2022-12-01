@@ -6,7 +6,7 @@ describe("Тестирование компонента AddTask:", () => {
     propsData: {},
   });
   const addNewTask = jest.spyOn(wrapper.vm, "addNewTask");
-  const input = wrapper.find("input[type='text']");
+  const input = wrapper.findComponent("input[type='text']");
 
   test("соответствие снимку", () => {
     expect(wrapper).toMatchSnapshot();

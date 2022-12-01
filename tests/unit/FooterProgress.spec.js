@@ -14,6 +14,6 @@ describe("Тестирование компонента FooterProgress:", () => 
   });
 
   test("Проверка работы геттеров", () => {
-    expect(wrapper.find("div").text()).toBe("2/2 left");
+    expect(wrapper.findComponent("div").text()).toBe("2/2 left");
   });
 });

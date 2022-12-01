@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Тестирование компонента Main: соответствие снимку 1`] = `
+<main>
+  <div>
+    <!---->
+    <div><input type="text" placeholder="Add a new task"></div>
+  </div>
+</main>
+`;

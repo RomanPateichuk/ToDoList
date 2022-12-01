@@ -8,13 +8,13 @@ describe("Тестирование компонента FooterBtn:", () => {
     },
   });
 
-  const input = wrapper.find("input");
+  const input = wrapper.findComponent("input");
   test("соответствие снимку", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
   test("Проверка входных параметров", async () => {
-    expect(wrapper.find("span").text()).toBe("ALL");
+    expect(wrapper.findComponent("span").text()).toBe("ALL");
   });
 
   test("при клике вызываются методы 'callFilter'", async () => {
