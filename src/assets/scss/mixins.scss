@@ -1,0 +1,32 @@
+@mixin MediaFooterBntmobile {
+    @media (max-width: 490px) {
+        margin-right: 0;
+      }
+}
+
+@mixin MediaFooterMobile{
+    @media (max-width: 410px) {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+      @media (max-width: 314px) {
+        flex-direction: column;
+      }
+}
+
+@mixin MediaMainMobile{
+    @media (max-width: 450px) {
+        padding: 0 0.5rem;
+      }
+}
+
+@mixin Task {
+    display: flex;
+    background: $task;
+    border-radius: 0.625rem;
+    padding: 0 1.25rem;
+    height: 3.125rem;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; 
+}

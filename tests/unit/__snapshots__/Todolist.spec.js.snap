@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Тестирование компонента TaskWrapper: соответствие снимку 1`] = `
+<div>
+  <div>
+    <header>
+      <h1>to do list</h1>
+    </header>
+    <main>
+      <div>
+        <!---->
+        <div><input type="text" placeholder="Add a new task"></div>
+      </div>
+    </main>
+    <footer>
+      <div>
+        function mockConstructor() {
+        return fn.apply(this, arguments);
+        }/0 left
+      </div>
+      <div>
+        <!---->
+        <!---->
+        <!---->
+      </div>
+    </footer>
+  </div> <img src="@/assets/img/background_img.png" alt="background">
+</div>
+`;
