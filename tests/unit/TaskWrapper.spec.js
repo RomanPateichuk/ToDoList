@@ -64,7 +64,8 @@ describe("Тестирование компонента TaskWrapper:", () => {
 
   test("Тестирование входных параметров", () => {
     expect(
-      wrapper.findComponent(EditTask).findComponent("input").attributes().placeholder
+      wrapper.findComponent(EditTask).findComponent("input").attributes()
+        .placeholder
     ).toBe("Task 1");
   });
 });

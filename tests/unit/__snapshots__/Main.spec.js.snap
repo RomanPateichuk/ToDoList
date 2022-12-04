@@ -3,6 +3,48 @@
 exports[`Тестирование компонента Main: соответствие снимку 1`] = `
 <main>
   <div>
+    <div>
+      <div><input id="1" type="checkbox"> <label for="1"></label></div>
+      <div><input readonly="readonly" placeholder="Task 1" class=""> <button>
+          edit
+        </button></div> <button>×</button>
+    </div>
+    <div>
+      <div><input id="2" type="checkbox"> <label for="2"></label></div>
+      <div><input readonly="readonly" placeholder="Task 2" class=""> <button>
+          edit
+        </button></div> <button>×</button>
+    </div>
+    <div>
+      <div><input id="3" type="checkbox"> <label for="3"></label></div>
+      <div><input readonly="readonly" placeholder="Task 3" class=""> <button>
+          edit
+        </button></div> <button>×</button>
+    </div>
+    <div>
+      <div><input id="4" type="checkbox"> <label for="4"></label></div>
+      <div><input readonly="readonly" placeholder="Task 4" class=""> <button>
+          edit
+        </button></div> <button>×</button>
+    </div>
+    <div>
+      <div><input id="255" type="checkbox"> <label for="255"></label></div>
+      <div><input readonly="readonly" placeholder="Сделать таск по VUE" class=""> <button>
+          edit
+        </button></div> <button>×</button>
+    </div>
+    <div>
+      <div><input id="256" type="checkbox"> <label for="256"></label></div>
+      <div><input readonly="readonly" placeholder="Сделать таск по REACT" class=""> <button>
+          edit
+        </button></div> <button>×</button>
+    </div>
+    <div>
+      <div><input id="286" type="checkbox"> <label for="286"></label></div>
+      <div><input readonly="readonly" placeholder="Сделать таск по VUE Todo" class=""> <button>
+          edit
+        </button></div> <button>×</button>
+    </div>
     <!---->
     <div><input type="text" placeholder="Add a new task"></div>
   </div>
