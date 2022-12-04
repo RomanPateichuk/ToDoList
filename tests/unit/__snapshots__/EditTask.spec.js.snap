@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Тестирование компонента EditTask: соответствие снимку 1`] = `
-<div><input readonly="readonly" placeholder="" class=""> <button>
-    edit
-  </button></div>
-`;
